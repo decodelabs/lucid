@@ -13,7 +13,8 @@
 
         "decodelabs/archetype": "^0.2",
         "decodelabs/coercion": "^0.2",
-        "decodelabs/exceptional": "^0.4"
+        "decodelabs/exceptional": "^0.4",
+        "decodelabs/tightrope": "^0.1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
@@ -26,7 +27,8 @@
     },
     "autoload": {
         "psr-4": {
-            "DecodeLabs\\Lucid\\": "src/"
+            "DecodeLabs\\Lucid\\": "src/",
+            "DecodeLabs\\Lucid\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -43,9 +45,9 @@
         "analyze": "phpstan analyze --no-progress",
         "ecs": "ecs check --no-progress-bar",
         "ecs-fix": "ecs check --no-progress-bar --fix",
-        "lint": "parallel-lint src/ ecs.php",
-        "eclint": "eclint check src/ ecs.php",
-        "eclint-fix": "eclint fix src/ ecs.php",
+        "lint": "parallel-lint src/ tests/ ecs.php",
+        "eclint": "eclint check src/ tests/ ecs.php",
+        "eclint-fix": "eclint fix src/ tests/ ecs.php",
         "non-ascii": "! LC_ALL=C.UTF-8 find src/ -type f -name \"*.php\" -print0 | xargs -0 -- grep -PHn \"[^ -~]\" | grep -v '// @ignore-non-ascii$'",
         "check": [
             "@composer update",
