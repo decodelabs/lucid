@@ -31,7 +31,7 @@ trait SingleContextProviderTrait
         return $this->sanitize()->forceAs($type, $setup);
     }
 
-    public function sanitize(bool $required=true): Sanitizer
+    public function sanitize(bool $required = true): Sanitizer
     {
         return new Sanitizer($this->getValue(), $required);
     }

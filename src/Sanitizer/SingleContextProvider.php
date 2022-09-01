@@ -30,5 +30,5 @@ interface SingleContextProvider
     /**
      * @phpstan-return Sanitizer<TValue>
      */
-    public function sanitize(bool $required=true): Sanitizer;
+    public function sanitize(bool $required = true): Sanitizer;
 }
