@@ -58,7 +58,8 @@ class MaxLength implements Constraint
             $length > $this->length
         ) {
             yield new Error(
-                $this, $value,
+                $this,
+                $value,
                 '%type% value cannot be longer than %maxLength% characters'
             );
         }

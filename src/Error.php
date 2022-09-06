@@ -99,7 +99,7 @@ class Error
         // Replace
         foreach ($params as $key => $param) {
             $output = str_replace(
-                '%'.$key.'%',
+                '%' . $key . '%',
                 Coercion::forceString($param),
                 $output
             );

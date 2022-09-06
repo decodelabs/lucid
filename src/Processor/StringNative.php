@@ -9,10 +9,8 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Processor;
 
-use DecodeLabs\Lucid\Error;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\ProcessorTrait;
-use Generator;
 
 /**
  * @implements Processor<string>

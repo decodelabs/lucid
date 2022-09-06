@@ -58,7 +58,8 @@ class MinLength implements Constraint
             $length < $this->length
         ) {
             yield new Error(
-                $this, $value,
+                $this,
+                $value,
                 '%type% value must contain at least %minLength% characters'
             );
         }

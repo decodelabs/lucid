@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use DecodeLabs\Archetype;
-use DecodeLabs\Lucid\Constraint\ProcessorPreparer;
 use Generator;
 
 /**
