@@ -12,7 +12,8 @@
         "php": "^8.0",
 
         "decodelabs/archetype": "^0.2",
-        "decodelabs/coercion": "^0.2",
+        "decodelabs/coercion": "^0.2.2",
+        "decodelabs/dictum": "0.4",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/tightrope": "^0.1.1"
     },
@@ -25,9 +26,7 @@
 
         "decodelabs/phpstan-decodelabs": "^0.6"
     },
-    "suggest": {
-        "decodelabs/dictum": "Accurate text manipulation"
-    },
+    "suggest": {},
     "autoload": {
         "psr-4": {
             "DecodeLabs\\Lucid\\": "src/",

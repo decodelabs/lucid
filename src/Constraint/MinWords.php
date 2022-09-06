@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Constraint;
 
+use DecodeLabs\Dictum;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
@@ -24,7 +25,6 @@ class MinWords implements Constraint
      * @phpstan-use ConstraintTrait<int, string>
      */
     use ConstraintTrait;
-    use WordsTrait;
 
     protected ?int $words = null;
 
@@ -52,7 +52,7 @@ class MinWords implements Constraint
 
     public function validate(mixed $value): Generator
     {
-        $words = $this->countWords($value);
+        $words = Dictum::countWords($value);
 
         if (
             $this->words > 0 &&
