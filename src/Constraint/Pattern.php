@@ -51,7 +51,7 @@ class Pattern implements Constraint
         if (
             $this->pattern !== null &&
             !filter_var(
-                $value,
+                (string)$value,
                 \FILTER_VALIDATE_REGEXP,
                 ['options' => ['regexp' => $this->pattern]]
             )

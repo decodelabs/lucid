@@ -55,7 +55,7 @@ class MaxLength implements Constraint
 
     public function validate(mixed $value): Generator
     {
-        $length = mb_strlen($value ?? '');
+        $length = mb_strlen((string)$value);
 
         if (
             $this->length > 0 &&

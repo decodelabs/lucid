@@ -56,7 +56,7 @@ class MinWords implements Constraint
 
     public function validate(mixed $value): Generator
     {
-        $words = Dictum::countWords($value);
+        $words = Dictum::countWords((string)$value);
 
         if (
             $this->words > 0 &&

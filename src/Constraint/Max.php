@@ -9,27 +9,26 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Constraint;
 
-use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
 
 /**
- * @implements Constraint<int, string>
+ * @implements Constraint<float, int|float>
  */
-class MinLength implements Constraint
+class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<int, string>
+     * @phpstan-use ConstraintTrait<float, int|float>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string'
+        'int', 'float'
     ];
 
-    protected ?int $length = null;
+    protected ?float $max = null;
 
     public function getWeight(): int
     {
@@ -38,33 +37,22 @@ class MinLength implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        if ($param <= 0) {
-            throw Exceptional::InvalidArgument(
-                'Max length must be greater than 0'
-            );
-        }
-
-        $this->length = $param;
+        $this->max = (float)$param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->length;
+        return $this->max;
     }
 
     public function validate(mixed $value): Generator
     {
-        $length = mb_strlen((string)$value);
-
-        if (
-            $this->length > 0 &&
-            $length < $this->length
-        ) {
+        if ($value > $this->max) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must contain at least %minLength% characters'
+                '%type% value must not be greater than %max%'
             );
         }
 
@@ -73,6 +61,13 @@ class MinLength implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        return str_pad($value, (int)$this->length, ' ');
+        if (
+            $this->max !== null &&
+            $value > $this->max
+        ) {
+            $value = $this->max;
+        }
+
+        return $value;
     }
 }

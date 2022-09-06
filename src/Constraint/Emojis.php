@@ -60,7 +60,7 @@ class Emojis implements Constraint
 
         if (
             !$this->emojis &&
-            preg_match(self::REGEX, $value)
+            preg_match(self::REGEX, (string)$value)
         ) {
             yield new Error(
                 $this,
