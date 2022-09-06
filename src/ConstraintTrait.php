@@ -30,6 +30,20 @@ trait ConstraintTrait
         $this->processor = $processor;
     }
 
+    public static function getProcessorOutputTypes(): ?array
+    {
+        if (
+            defined('static::OUTPUT_TYPES') &&
+            /** @phpstan-ignore-next-line */
+            is_array(static::OUTPUT_TYPES)
+        ) {
+            /** @phpstan-ignore-next-line */
+            return static::OUTPUT_TYPES;
+        }
+
+        return null;
+    }
+
     public function getWeight(): int
     {
         return 10;

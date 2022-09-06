@@ -25,6 +25,10 @@ class MinLength implements Constraint
      */
     use ConstraintTrait;
 
+    public const OUTPUT_TYPES = [
+        'string'
+    ];
+
     protected ?int $length = null;
 
     public function getWeight(): int

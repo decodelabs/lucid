@@ -22,6 +22,10 @@ class Trim implements Constraint
      */
     use ConstraintTrait;
 
+    public const OUTPUT_TYPES = [
+        'string'
+    ];
+
     protected bool $trim = true;
 
     public function getWeight(): int

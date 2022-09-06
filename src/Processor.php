@@ -21,6 +21,12 @@ interface Processor
      */
     public function __construct(Sanitizer $sanitizer);
 
+    /**
+     * @return array<string>
+     */
+    public function getOutputTypes(): array;
+
+    public function getName(): string;
 
     /**
      * @phpstan-return Sanitizer<TOutput>

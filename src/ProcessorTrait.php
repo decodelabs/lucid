@@ -10,7 +10,9 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use DecodeLabs\Archetype;
+use DecodeLabs\Exceptional;
 use Generator;
+use ReflectionClass;
 
 /**
  * @template TOutput
@@ -33,6 +35,19 @@ trait ProcessorTrait
     public function __construct(Sanitizer $sanitizer)
     {
         $this->sanitizer = $sanitizer;
+    }
+
+
+    public function getName(): string
+    {
+        $output = (new ReflectionClass($this))
+            ->getShortName();
+
+        if (substr($output, -6) === 'Native') {
+            $output = substr($output, 0, -6);
+        }
+
+        return $output;
     }
 
 
@@ -81,6 +96,26 @@ trait ProcessorTrait
 
         if (!isset($this->constraints[$constraint])) {
             $class = Archetype::resolve(Constraint::class, ucfirst($constraint));
+
+            if (null !== ($types = $class::getProcessorOutputTypes())) {
+                $found = false;
+
+                foreach ($this->getOutputTypes() as $type) {
+                    if (in_array($type, $types)) {
+                        $found = true;
+                        break;
+                    }
+                }
+
+                if (!$found) {
+                    $name =
+
+                    throw Exceptional::InvalidArgument(
+                        ucfirst($constraint) . ' constraint cannot be used on type ' . $this->getName()
+                    );
+                }
+            }
+
             $this->constraints[$constraint] = new $class($this);
         }
 

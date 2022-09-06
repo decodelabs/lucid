@@ -14,6 +14,11 @@ use Stringable;
 
 trait StringTrait
 {
+    public function getOutputTypes(): array
+    {
+        return ['string'];
+    }
+
     /**
      * Convert prepared value to string or null
      */

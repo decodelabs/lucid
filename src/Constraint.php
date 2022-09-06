@@ -22,6 +22,11 @@ interface Constraint
      */
     public function __construct(Processor $processor);
 
+    /**
+     * @return array<string>|null
+     */
+    public static function getProcessorOutputTypes(): ?array;
+
     public function getWeight(): int;
 
     /**

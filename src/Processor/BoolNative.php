@@ -24,6 +24,11 @@ class BoolNative implements Processor
      */
     use ProcessorTrait;
 
+    public function getOutputTypes(): array
+    {
+        return ['bool'];
+    }
+
     /**
      * Convert prepared value to bool or null
      */

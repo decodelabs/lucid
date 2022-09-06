@@ -26,6 +26,10 @@ class MinWords implements Constraint
      */
     use ConstraintTrait;
 
+    public const OUTPUT_TYPES = [
+        'string'
+    ];
+
     protected ?int $words = null;
 
     public function getWeight(): int

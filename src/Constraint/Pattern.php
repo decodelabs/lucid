@@ -24,6 +24,10 @@ class Pattern implements Constraint
      */
     use ConstraintTrait;
 
+    public const OUTPUT_TYPES = [
+        'string'
+    ];
+
     protected ?string $pattern = null;
 
     public function getWeight(): int

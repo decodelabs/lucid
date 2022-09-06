@@ -69,8 +69,7 @@ class Error
 
     public function getProcessorName(): string
     {
-        return (new ReflectionClass($this->constraint->getProcessor()))
-            ->getShortName();
+        return $this->constraint->getProcessor()->getName();
     }
 
     public function getValue(): mixed
