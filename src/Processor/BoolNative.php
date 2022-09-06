@@ -15,17 +15,17 @@ use DecodeLabs\Lucid\ProcessorTrait;
 use Stringable;
 
 /**
- * @implements Processor<string>
+ * @implements Processor<bool>
  */
 class BoolNative implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<string>
+     * @phpstan-use ProcessorTrait<bool>
      */
     use ProcessorTrait;
 
     /**
-     * Convert prepared value to string or null
+     * Convert prepared value to bool or null
      */
     public function coerce(mixed $value): ?bool
     {
@@ -49,7 +49,7 @@ class BoolNative implements Processor
     }
 
     /**
-     * Convert prepared value to string
+     * Convert prepared value to bool
      */
     public function forceCoerce(mixed $value): ?bool
     {

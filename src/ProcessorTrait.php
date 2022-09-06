@@ -120,7 +120,7 @@ trait ProcessorTrait
     }
 
 
-    public function constrain(mixed $value): string
+    public function constrain(mixed $value): mixed
     {
         foreach ($this->constraints as $constraint) {
             $value = $constraint->constrain($value);
