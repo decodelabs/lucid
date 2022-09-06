@@ -120,8 +120,6 @@ trait ProcessorTrait
         }
 
         $this->constraints[$constraint]->setParameter($param);
-        $this->prepareConstraints();
-
         return $this;
     }
 

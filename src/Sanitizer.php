@@ -166,6 +166,7 @@ class Sanitizer
             }
         }
 
+        $processor->prepareConstraints();
         return $processor;
     }
 }
