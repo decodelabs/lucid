@@ -10,35 +10,28 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Processor;
 
 use DecodeLabs\Coercion;
+use DecodeLabs\Lucid\Error;
+use Generator;
 
 trait StringTrait
 {
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(): ?string
+    public function coerce(mixed $value): ?string
     {
-        if (null === ($value = $this->sanitizer->prepareValue())) {
+        if ($value === null) {
             return null;
         }
 
-        $output = Coercion::toString($value);
-
-        if (
-            $output === '' &&
-            !$this->sanitizer->isRequired()
-        ) {
-            $output = null;
-        }
-
-        return $output;
+        return Coercion::toString($value);
     }
 
     /**
      * Convert prepared value to string
      */
-    public function forceCoerce(): ?string
+    public function forceCoerce(mixed $value): ?string
     {
-        return Coercion::forceString($this->sanitizer->prepareValue());
+        return Coercion::forceString($value);
     }
 }

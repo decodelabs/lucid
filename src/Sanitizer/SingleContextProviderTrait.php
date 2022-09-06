@@ -19,21 +19,21 @@ trait SingleContextProviderTrait
 {
     public function as(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed {
         return $this->sanitize()->as($type, $setup);
     }
 
     public function forceAs(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed {
         return $this->sanitize()->forceAs($type, $setup);
     }
 
-    public function sanitize(bool $required = true): Sanitizer
+    public function sanitize(): Sanitizer
     {
-        return new Sanitizer($this->getValue(), $required);
+        return new Sanitizer($this->getValue());
     }
 
     /**

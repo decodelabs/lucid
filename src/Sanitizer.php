@@ -12,22 +12,16 @@ namespace DecodeLabs\Lucid;
 use Closure;
 use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
-use DecodeLabs\Tightrope\Manifest\Requirable;
-use DecodeLabs\Tightrope\Manifest\RequirableTrait;
 
 /**
  * @template TInput
  */
-class Sanitizer implements Requirable
+class Sanitizer
 {
-    use RequirableTrait;
-
     /**
      * @phpstan-var TInput
      */
     protected mixed $value;
-
-    protected mixed $default = null;
 
 
     /**
@@ -35,16 +29,13 @@ class Sanitizer implements Requirable
      *
      * @phpstan-param TInput $value
      */
-    public function __construct(
-        mixed $value,
-        bool $required = true
-    ) {
+    public function __construct(mixed $value)
+    {
         if ($value instanceof Closure) {
             $value = $value();
         }
 
         $this->value = $value;
-        $this->required = $required;
     }
 
 
@@ -67,36 +58,20 @@ class Sanitizer implements Requirable
         return $this->value;
     }
 
-    /**
-     * Set default value
-     *
-     * @return $this
-     */
-    public function setDefaultValue(mixed $default): static
-    {
-        $this->default = $default;
-        return $this;
-    }
-
-    /**
-     * Get default value
-     */
-    public function getDefaultValue(): mixed
-    {
-        return $this->default;
-    }
-
 
 
     /**
      * Process value as type
+     *
+     * @param array<string, mixed>|Closure|null $setup
      */
     public function as(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed {
-        $processor = $this->process($type, $setup);
-        $value = $processor->coerce();
+        $processor = $this->loadProcessor($type, $setup);
+        $value = $processor->prepareValue($this->value);
+        $value = $processor->coerce($value);
 
         foreach ($gen = $processor->validateConstraints($value) as $error) {
             if ($error === null) {
@@ -115,13 +90,16 @@ class Sanitizer implements Requirable
 
     /**
      * Process value as type
+     *
+     * @param array<string, mixed>|Closure|null $setup
      */
     public function forceAs(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed {
-        $processor = $this->process($type, $setup);
-        $value = $processor->forceCoerce();
+        $processor = $this->loadProcessor($type, $setup);
+        $value = $processor->prepareValue($this->value);
+        $value = $processor->forceCoerce($value);
         return $processor->constrain($value);
     }
 
@@ -129,16 +107,19 @@ class Sanitizer implements Requirable
     /**
      * Load processor for value
      *
+     * @param array<string, mixed>|Closure|null $setup
      * @phpstan-return Processor<mixed>
      */
-    public function process(
+    public function loadProcessor(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): Processor {
+        $required = true;
+
         // Optional
         if (substr($type, 0, 1) === '?') {
             $type = substr($type, 1);
-            $this->required = false;
+            $required = false;
         }
 
         $params = [];
@@ -166,34 +147,16 @@ class Sanitizer implements Requirable
 
         $class = Archetype::resolve(Processor::class, $type);
         $processor = new $class($this);
+        $processor->test('required', $required);
 
         if ($setup instanceof Closure) {
-            $default = $setup->call($processor);
-
-            if (
-                $default !== $this &&
-                $default !== $processor
-            ) {
-                $this->default = $default;
+            $setup->call($processor);
+        } elseif (is_array($setup)) {
+            foreach ($setup as $key => $value) {
+                $processor->test($key, $value);
             }
         }
 
         return $processor;
-    }
-
-
-    /**
-     * Prepare value for coercion
-     */
-    public function prepareValue(): mixed
-    {
-        if (
-            $this->value === '' &&
-            $this->default !== null
-        ) {
-            return $this->default;
-        }
-
-        return $this->value ?? $this->default;
     }
 }

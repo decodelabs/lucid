@@ -9,10 +9,12 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid;
 
+use DecodeLabs\Coercion;
+use ReflectionClass;
+
 class Error
 {
     protected mixed $value;
-    protected string $constraint;
     protected string $message;
 
     /**
@@ -21,45 +23,89 @@ class Error
     protected array $params = [];
 
     /**
-     * @phpstan-var Processor<mixed>
+     * @phpstan-var Constraint<mixed, mixed>
      */
-    protected Processor $processor;
+    protected Constraint $constraint;
 
     /**
-     * @phpstan-param Processor<mixed> $processor
+     * @phpstan-param Constraint<mixed, mixed> $constraint
      * @param array<string, mixed> $params
      */
     public function __construct(
-        Processor $processor,
+        Constraint $constraint,
         mixed $value,
-        string $constraint,
         string $message,
         array $params = []
     ) {
-        $this->processor = $processor;
-        $this->value = $value;
         $this->constraint = $constraint;
+        $this->value = $value;
         $this->message = $message;
         $this->params = $params;
     }
 
+    /**
+     * @phpstan-return Constraint<mixed, mixed>
+     */
+    public function getConstraint(): Constraint
+    {
+        return $this->constraint;
+    }
 
+    public function getConstraintKey(): string
+    {
+        return lcfirst(
+            (new ReflectionClass($this->constraint))
+                ->getShortName()
+        );
+    }
+
+    public function getProcessorName(): string
+    {
+        return (new ReflectionClass($this->constraint->getProcessor()))
+            ->getShortName();
+    }
 
     public function getValue(): mixed
     {
         return $this->value;
     }
 
-
-    public function getConstraint(): string
+    public function getMessageTemplate(): string
     {
-        return $this->constraint;
+        return $this->message;
     }
-
 
     public function getMessage(): string
     {
-        return $this->message;
+        $output = $this->message;
+        $params = $this->params;
+
+        // Type
+        if (false !== strstr($output, '%type%')) {
+            $type = $this->getProcessorName();
+
+            if (substr($type, -6) === 'Native') {
+                $type = substr($type, 0, -6);
+            }
+
+            $params['type'] = $type;
+        }
+
+        // Param
+        $key = $this->getConstraintKey();
+        $params[$key] = $this->constraint->getParameter();
+
+
+        // Replace
+        foreach ($params as $key => $param) {
+            $output = str_replace(
+                '%'.$key.'%',
+                Coercion::forceString($param),
+                $output
+            );
+        }
+
+        return $output;
     }
 
 
@@ -69,13 +115,5 @@ class Error
     public function getParams(): array
     {
         return $this->params;
-    }
-
-    /**
-     * @phpstan-return Processor<mixed>
-     */
-    public function getProcessor(): Processor
-    {
-        return $this->processor;
     }
 }

@@ -17,18 +17,24 @@ use DecodeLabs\Lucid\Sanitizer;
  */
 interface SingleContextProvider
 {
+    /**
+     * @param array<string, mixed>|Closure|null $setup
+     */
     public function as(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed;
 
+    /**
+     * @param array<string, mixed>|Closure|null $setup
+     */
     public function forceAs(
         string $type,
-        ?Closure $setup = null
+        array|Closure|null $setup = null
     ): mixed;
 
     /**
      * @phpstan-return Sanitizer<TValue>
      */
-    public function sanitize(bool $required = true): Sanitizer;
+    public function sanitize(): Sanitizer;
 }

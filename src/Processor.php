@@ -23,18 +23,42 @@ interface Processor
 
 
     /**
+     * @phpstan-return Sanitizer<TOutput>
+     */
+    public function getSanitizer(): Sanitizer;
+
+    public function prepareValue(mixed $value): mixed;
+
+    /**
      * Coerce input to output type or null
      *
      * @phpstan-return TOutput|null
      */
-    public function coerce(): mixed;
+    public function coerce(mixed $value): mixed;
 
     /**
      * Force coerce to output type
      *
      * @phpstan-return TOutput
      */
-    public function forceCoerce(): mixed;
+    public function forceCoerce(mixed $value): mixed;
+
+
+    /**
+     * Test validity of constraint
+     *
+     * @return $this
+     */
+    public function test(
+        string $constraint,
+        mixed $param
+    ): static;
+
+
+    /**
+     * @phpstan-return array<string, Constraint<mixed, TOutput>>
+     */
+    public function prepareConstraints(): array;
 
 
     /**
