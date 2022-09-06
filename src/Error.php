@@ -26,6 +26,7 @@ class Error
      * @phpstan-var Constraint<mixed, mixed>
      */
     protected Constraint $constraint;
+    protected string $constraintKey;
 
     /**
      * @phpstan-param Constraint<mixed, mixed> $constraint
@@ -41,6 +42,11 @@ class Error
         $this->value = $value;
         $this->message = $message;
         $this->params = $params;
+
+        $this->constraintKey = lcfirst(
+            (new ReflectionClass($this->constraint))
+                ->getShortName()
+        );
     }
 
     /**
@@ -51,12 +57,14 @@ class Error
         return $this->constraint;
     }
 
+    public function setConstraintKey(string $key): void
+    {
+        $this->constraintKey = $key;
+    }
+
     public function getConstraintKey(): string
     {
-        return lcfirst(
-            (new ReflectionClass($this->constraint))
-                ->getShortName()
-        );
+        return $this->constraintKey;
     }
 
     public function getProcessorName(): string
