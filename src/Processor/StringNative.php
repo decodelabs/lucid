@@ -22,4 +22,11 @@ class StringNative implements Processor
      */
     use ProcessorTrait;
     use StringTrait;
+
+    public function getDefaultConstraints(): array
+    {
+        return [
+            'trim' => true
+        ];
+    }
 }

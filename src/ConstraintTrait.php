@@ -59,6 +59,11 @@ trait ConstraintTrait
         return $value;
     }
 
+    public function alterValue(mixed $value): mixed
+    {
+        return $value;
+    }
+
     /**
      * @phpstan-param TValue $value
      */

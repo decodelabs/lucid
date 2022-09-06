@@ -39,6 +39,12 @@ interface Constraint
     public function prepareValue(mixed $value): mixed;
 
     /**
+     * @phpstan-param TValue $value
+     * @phpstan-return TValue|null
+     */
+    public function alterValue(mixed $value): mixed;
+
+    /**
      * @phpstan-param TValue|null $value
      * @phpstan-return Generator<int, Error|null, mixed, bool>
      */

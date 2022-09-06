@@ -9,59 +9,59 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Constraint;
 
+use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
 
 /**
- * @template TValue
- * @implements Constraint<bool, TValue>
+ * @implements Constraint<int, string>
  */
-class Required implements Constraint
+class MinWords implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, TValue>
+     * @phpstan-use ConstraintTrait<int, string>
      */
     use ConstraintTrait;
+    use WordsTrait;
 
-    protected bool $required = true;
+    protected ?int $words = null;
 
     public function getWeight(): int
     {
-        return 1;
+        return 25;
     }
 
     public function setParameter(mixed $param): static
     {
-        $this->required = $param;
+        if ($param <= 0) {
+            throw Exceptional::InvalidArgument(
+                'Min words must be greater than 0'
+            );
+        }
+
+        $this->words = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->required;
-    }
-
-    public function prepareValue(mixed $value): mixed
-    {
-        if ($value === '') {
-            $value = null;
-        }
-
-        return $value;
+        return $this->words;
     }
 
     public function validate(mixed $value): Generator
     {
+        $words = $this->countWords($value);
+
         if (
-            $this->required &&
-            $value === null
+            $this->words > 0 &&
+            $words < $this->words
         ) {
             yield new Error(
                 $this,
                 $value,
-                'Value is required'
+                '%type% value must contain at least %minWords% words'
             );
         }
 

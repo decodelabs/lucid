@@ -25,6 +25,9 @@
 
         "decodelabs/phpstan-decodelabs": "^0.6"
     },
+    "suggest": {
+        "decodelabs/dictum": "Accurate text manipulation"
+    },
     "autoload": {
         "psr-4": {
             "DecodeLabs\\Lucid\\": "src/",

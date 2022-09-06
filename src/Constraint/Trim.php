@@ -13,42 +13,41 @@ use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 
 /**
- * @template TValue
- * @implements Constraint<TValue, TValue>
+ * @implements Constraint<bool, string>
  */
-class DefaultValue implements Constraint
+class Trim implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<TValue, TValue>
+     * @phpstan-use ConstraintTrait<bool, string>
      */
     use ConstraintTrait;
 
-    protected mixed $default = null;
+    protected bool $trim = true;
 
     public function getWeight(): int
     {
-        return 0;
+        return 5;
     }
 
     public function setParameter(mixed $param): static
     {
-        $this->default = $param;
+        $this->trim = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->default;
+        return $this->trim;
     }
 
-    public function prepareValue(mixed $value): mixed
+    public function alterValue(mixed $value): mixed
     {
-        if ($value === '') {
-            $value = null;
-        }
+        if ($this->trim) {
+            $value = trim((string)$value);
 
-        if ($value === null) {
-            $value = $this->default;
+            if ($value === '') {
+                $value = null;
+            }
         }
 
         return $value;

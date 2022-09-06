@@ -52,6 +52,20 @@ trait ProcessorTrait
     }
 
 
+    final public function alterValue(mixed $value): mixed
+    {
+        foreach ($this->constraints as $constraint) {
+            $value = $constraint->alterValue($value);
+
+            if ($value === null) {
+                break;
+            }
+        }
+
+        return $value;
+    }
+
+
     /**
      * Test constraint
      *
@@ -75,6 +89,13 @@ trait ProcessorTrait
 
         return $this;
     }
+
+
+    public function getDefaultConstraints(): array
+    {
+        return [];
+    }
+
 
     public function prepareConstraints(): array
     {

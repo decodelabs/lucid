@@ -9,21 +9,21 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Constraint;
 
+use Closure;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 
 /**
- * @template TValue
- * @implements Constraint<TValue, TValue>
+ * @implements Constraint<Closure, string>
  */
-class DefaultValue implements Constraint
+class Sanitize implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<TValue, TValue>
+     * @phpstan-use ConstraintTrait<Closure, string>
      */
     use ConstraintTrait;
 
-    protected mixed $default = null;
+    protected ?Closure $sanitizer = null;
 
     public function getWeight(): int
     {
@@ -32,23 +32,19 @@ class DefaultValue implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->default = $param;
+        $this->sanitizer = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->default;
+        return $this->sanitizer;
     }
 
     public function prepareValue(mixed $value): mixed
     {
-        if ($value === '') {
-            $value = null;
-        }
-
-        if ($value === null) {
-            $value = $this->default;
+        if (is_callable($this->sanitizer)) {
+            $value = ($this->sanitizer)($value);
         }
 
         return $value;

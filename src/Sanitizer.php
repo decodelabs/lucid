@@ -73,6 +73,10 @@ class Sanitizer
         $value = $processor->prepareValue($this->value);
         $value = $processor->coerce($value);
 
+        if ($value !== null) {
+            $value = $processor->alterValue($value);
+        }
+
         foreach ($gen = $processor->validateConstraints($value) as $error) {
             if ($error === null) {
                 continue;
@@ -100,6 +104,7 @@ class Sanitizer
         $processor = $this->loadProcessor($type, $setup);
         $value = $processor->prepareValue($this->value);
         $value = $processor->forceCoerce($value);
+        $value = $processor->alterValue($value);
         return $processor->constrain($value);
     }
 
@@ -148,6 +153,10 @@ class Sanitizer
         $class = Archetype::resolve(Processor::class, $type);
         $processor = new $class($this);
         $processor->test('required', $required);
+
+        foreach ($processor->getDefaultConstraints() as $key => $value) {
+            $processor->test($key, $value);
+        }
 
         if ($setup instanceof Closure) {
             $setup->call($processor);

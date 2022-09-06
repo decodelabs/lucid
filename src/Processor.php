@@ -27,7 +27,18 @@ interface Processor
      */
     public function getSanitizer(): Sanitizer;
 
+    /**
+     * Prepare value before coercion
+     */
     public function prepareValue(mixed $value): mixed;
+
+    /**
+     * Apply value processing before validation
+     *
+     * @phpstan-param TOutput $value
+     * @phpstan-return TOutput|null
+     */
+    public function alterValue(mixed $value): mixed;
 
     /**
      * Coerce input to output type or null
@@ -53,6 +64,12 @@ interface Processor
         string $constraint,
         mixed $param
     ): static;
+
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getDefaultConstraints(): array;
 
 
     /**

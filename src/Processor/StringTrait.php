@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Processor;
 
 use DecodeLabs\Coercion;
+use Stringable;
 
 trait StringTrait
 {
@@ -22,7 +23,19 @@ trait StringTrait
             return null;
         }
 
-        return Coercion::toString($value);
+        if ($value instanceof Stringable) {
+            $value = (string)$value;
+        }
+
+        if (is_array($value)) {
+            return implode(', ', $value);
+        }
+
+        if (is_object($value)) {
+            return get_class($value);
+        }
+
+        return Coercion::forceString($value);
     }
 
     /**
@@ -30,6 +43,6 @@ trait StringTrait
      */
     public function forceCoerce(mixed $value): ?string
     {
-        return Coercion::forceString($value);
+        return $this->coerce($value) ?? '';
     }
 }
