@@ -96,7 +96,17 @@ trait ProcessorTrait
 
         if (!isset($this->constraints[$constraint])) {
             $spec = $this->getName() . ':' . implode(':', $this->getOutputTypes());
-            $class = Archetype::resolve(Constraint::class, $spec . ':' . ucfirst($constraint));
+
+            try {
+                $class = Archetype::resolve(Constraint::class, $spec . ':' . ucfirst($constraint));
+            } catch (Archetype\Exception $e) {
+                throw Exceptional::{'NotFound,DecodeLabs/Archetype/NotFound'}(
+                    ucfirst($constraint).' constraint could not be found for '.$this->getName().' processor',
+                    [
+                        'previous' => $e
+                    ]
+                );
+            }
 
             $this->checkConstraintTypes($constraint, $class);
             $this->constraints[$constraint] = new $class($this);
