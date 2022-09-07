@@ -96,31 +96,49 @@ trait ProcessorTrait
 
         if (!isset($this->constraints[$constraint])) {
             $class = Archetype::resolve(Constraint::class, ucfirst($constraint));
-
-            if (null !== ($types = $class::getProcessorOutputTypes())) {
-                $found = false;
-
-                foreach ($this->getOutputTypes() as $type) {
-                    if (in_array($type, $types)) {
-                        $found = true;
-                        break;
-                    }
-                }
-
-                if (!$found) {
-                    $name =
-
-                    throw Exceptional::InvalidArgument(
-                        ucfirst($constraint) . ' constraint cannot be used on type ' . $this->getName()
-                    );
-                }
-            }
+            $this->checkConstraintTypes($constraint, $class);
 
             $this->constraints[$constraint] = new $class($this);
         }
 
         $this->constraints[$constraint]->setParameter($param);
         return $this;
+    }
+
+    protected function checkConstraintTypes(
+        string $constraint,
+        string $class
+    ): void {
+        if (null === ($types = $class::getProcessorOutputTypes())) {
+            return;
+        }
+
+        $found = false;
+
+        foreach ($this->getOutputTypes() as $type) {
+            // Check for <name>: parent types
+            if (false !== strpos($type, ':')) {
+                $parts = explode(':', $type);
+                $parentType = array_shift($parts) . ':';
+
+                if (in_array($parentType, $types)) {
+                    $found = true;
+                    break;
+                }
+            }
+
+            // Check for full type
+            if (in_array($type, $types)) {
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            throw Exceptional::InvalidArgument(
+                ucfirst($constraint) . ' constraint cannot be used on type ' . $this->getName()
+            );
+        }
     }
 
 

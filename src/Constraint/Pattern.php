@@ -25,7 +25,7 @@ class Pattern implements Constraint
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string'
+        'string', 'string:'
     ];
 
     protected ?string $pattern = null;

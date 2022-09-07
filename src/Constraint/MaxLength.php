@@ -26,7 +26,7 @@ class MaxLength implements Constraint
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string'
+        'string', 'string:'
     ];
 
     protected ?int $length = null;

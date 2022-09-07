@@ -10,13 +10,24 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Processor;
 
 use DecodeLabs\Coercion;
+use DecodeLabs\Dictum;
+use DecodeLabs\Lucid\Processor;
+use DecodeLabs\Lucid\ProcessorTrait;
 use Stringable;
 
-trait StringTrait
+/**
+ * @implements Processor<string>
+ */
+class Slug implements Processor
 {
+    /**
+     * @phpstan-use ProcessorTrait<string>
+     */
+    use ProcessorTrait;
+
     public function getOutputTypes(): array
     {
-        return ['string'];
+        return ['string:slug'];
     }
 
     /**
@@ -32,15 +43,8 @@ trait StringTrait
             $value = (string)$value;
         }
 
-        if (is_array($value)) {
-            return implode(', ', $value);
-        }
-
-        if (is_object($value)) {
-            return get_class($value);
-        }
-
-        return Coercion::forceString($value);
+        $string = Coercion::toString($value);
+        return Dictum::slug($string);
     }
 
     /**

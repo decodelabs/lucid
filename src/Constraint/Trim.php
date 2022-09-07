@@ -23,7 +23,7 @@ class Trim implements Constraint
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string'
+        'string', 'string:'
     ];
 
     protected bool $trim = true;
