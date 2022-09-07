@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint\DateTime;
+namespace DecodeLabs\Lucid\Constraint\Interval;
 
-use Carbon\Carbon;
-use DateTimeInterface;
+use Carbon\CarbonInterval;
+use DateInterval;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
@@ -18,20 +18,20 @@ use Generator;
 use Stringable;
 
 /**
- * @implements Constraint<DateTimeInterface|string|Stringable|int, Carbon>
+ * @implements Constraint<DateInterval|string|Stringable|int, CarbonInterval>
  */
-class Min implements Constraint
+class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int, Carbon>
+     * @phpstan-use ConstraintTrait<DateInterval|string|Stringable|int, CarbonInterval>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
+        'DateInterval', 'Carbon\\CarbonInterval'
     ];
 
-    protected ?Carbon $min = null;
+    protected ?CarbonInterval $max = null;
 
     public function getWeight(): int
     {
@@ -40,13 +40,13 @@ class Min implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->min = $this->processor->coerce($param);
+        $this->max = $this->processor->coerce($param);
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->min;
+        return $this->max;
     }
 
     public function validate(mixed $value): Generator
@@ -55,11 +55,11 @@ class Min implements Constraint
             return true;
         }
 
-        if ($value->lessThan($this->min)) {
+        if ($value->greaterThan($this->max)) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must be on or after %min%'
+                '%type% value must not be greater than %max%'
             );
         }
 
@@ -68,8 +68,8 @@ class Min implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        if ($value->lessThan($this->min)) {
-            $value = new Carbon('now');
+        if ($value->greaterThan($this->max)) {
+            $value = new CarbonInterval();
         }
 
         return $value;

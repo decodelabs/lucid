@@ -18,12 +18,12 @@ use Generator;
 use Stringable;
 
 /**
- * @implements Constraint<DateTimeInterface|string|Stringable|int|null, Carbon>
+ * @implements Constraint<DateTimeInterface|string|Stringable|int, Carbon>
  */
 class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int|null, Carbon>
+     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int, Carbon>
      */
     use ConstraintTrait;
 
@@ -40,8 +40,7 @@ class Max implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        /** @phpstan-ignore-next-line */
-        $this->max = new Carbon($param);
+        $this->max = $this->processor->coerce($param);
         return $this;
     }
 

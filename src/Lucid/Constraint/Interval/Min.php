@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint\DateTime;
+namespace DecodeLabs\Lucid\Constraint\Interval;
 
-use Carbon\Carbon;
-use DateTimeInterface;
+use Carbon\CarbonInterval;
+use DateInterval;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
@@ -18,20 +18,20 @@ use Generator;
 use Stringable;
 
 /**
- * @implements Constraint<DateTimeInterface|string|Stringable|int, Carbon>
+ * @implements Constraint<DateInterval|string|Stringable|int, CarbonInterval>
  */
 class Min implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int, Carbon>
+     * @phpstan-use ConstraintTrait<DateInterval|string|Stringable|int, CarbonInterval>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
+        'DateInterval', 'Carbon\\CarbonInterval'
     ];
 
-    protected ?Carbon $min = null;
+    protected ?CarbonInterval $min = null;
 
     public function getWeight(): int
     {
@@ -59,7 +59,7 @@ class Min implements Constraint
             yield new Error(
                 $this,
                 $value,
-                '%type% value must be on or after %min%'
+                '%type% value must not be less than %min%'
             );
         }
 
@@ -69,7 +69,7 @@ class Min implements Constraint
     public function constrain(mixed $value): mixed
     {
         if ($value->lessThan($this->min)) {
-            $value = new Carbon('now');
+            $value = new CarbonInterval();
         }
 
         return $value;

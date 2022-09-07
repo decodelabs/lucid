@@ -7,26 +7,26 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint\DateTime;
+namespace DecodeLabs\Lucid\Constraint\Interval;
 
-use Carbon\Carbon;
-use DateTimeInterface;
+use Carbon\CarbonInterval;
+use DateInterval;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use Stringable;
 
 /**
- * @implements Constraint<array<DateTimeInterface|string|Stringable|int>, Carbon>
+ * @implements Constraint<array<DateInterval|string|Stringable|int>, CarbonInterval>
  */
 class Range implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<array<DateTimeInterface|string|Stringable|int>, Carbon>
+     * @phpstan-use ConstraintTrait<array<DateInterval|string|Stringable|int>, CarbonInterval>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
+        'DateInterval', 'Carbon\\CarbonInterval'
     ];
 
     public function getWeight(): int
@@ -36,8 +36,8 @@ class Range implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->processor->test('min', $param[0] ?? 'now');
-        $this->processor->test('max', $param[1] ?? 'now');
+        $this->processor->test('min', $param[0] ?? 0);
+        $this->processor->test('max', $param[1] ?? 0);
         return $this;
     }
 }
