@@ -101,7 +101,7 @@ trait ProcessorTrait
                 $class = Archetype::resolve(Constraint::class, $spec . ':' . ucfirst($constraint));
             } catch (Archetype\Exception $e) {
                 throw Exceptional::{'NotFound,DecodeLabs/Archetype/NotFound'}(
-                    ucfirst($constraint).' constraint could not be found for '.$this->getName().' processor',
+                    ucfirst($constraint) . ' constraint could not be found for ' . $this->getName() . ' processor',
                     [
                         'previous' => $e
                     ]
