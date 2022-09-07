@@ -12,6 +12,7 @@ namespace DecodeLabs\Lucid;
 use Closure;
 use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Lucid\Validate\Result;
 
 /**
  * @template TInput
@@ -110,6 +111,39 @@ class Sanitizer
 
 
     /**
+     * Validate value as type
+     *
+     * @param array<string, mixed>|Closure|null $setup
+     * @return Result<mixed>
+     */
+    public function validate(
+        string $type,
+        array|Closure|null $setup = null
+    ): Result {
+        $processor = $this->loadProcessor($type, $setup);
+        $value = $processor->prepareValue($this->value);
+        $value = $processor->coerce($value);
+
+        if ($value !== null) {
+            $value = $processor->alterValue($value);
+        }
+
+        $result = new Result($processor);
+
+        foreach ($gen = $processor->validateConstraints($value) as $error) {
+            if ($error === null) {
+                continue;
+            }
+
+            $result->addError($error);
+        }
+
+        $result->setValue($gen->getReturn() ?? $value);
+        return $result;
+    }
+
+
+    /**
      * Load processor for value
      *
      * @param array<string, mixed>|Closure|null $setup
@@ -150,7 +184,14 @@ class Sanitizer
                 break;
         }
 
-        $class = Archetype::resolve(Processor::class, $type);
+        try {
+            $class = Archetype::resolve(Processor::class, $type);
+        } catch (Archetype\Exception $e) {
+            throw Exceptional::{'./Processor/NotFound,DecodeLabs/Archetype/NotFound'}(
+                'Processor ' . $type . ' could not be found'
+            );
+        }
+
         $processor = new $class($this);
         $processor->test('required', $required);
 

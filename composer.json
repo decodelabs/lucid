@@ -16,6 +16,7 @@
         "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/tightrope": "^0.1.1",
+        "decodelabs/veneer": "^0.9.2",
 
         "nesbot/carbon": "^2.25"
     },

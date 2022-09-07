@@ -49,6 +49,12 @@ class Error
         );
     }
 
+
+    public function getId(): string
+    {
+        return md5($this->constraintKey . ':' . $this->message);
+    }
+
     /**
      * @phpstan-return Constraint<mixed, mixed>
      */
