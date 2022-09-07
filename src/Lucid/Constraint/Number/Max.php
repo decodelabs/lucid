@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\Number;
 
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
@@ -17,7 +17,7 @@ use Generator;
 /**
  * @implements Constraint<float, int|float>
  */
-class Min implements Constraint
+class Max implements Constraint
 {
     /**
      * @phpstan-use ConstraintTrait<float, int|float>
@@ -25,10 +25,10 @@ class Min implements Constraint
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'int', 'float'
+        'int', 'float', 'number'
     ];
 
-    protected ?float $min = null;
+    protected ?float $max = null;
 
     public function getWeight(): int
     {
@@ -37,22 +37,22 @@ class Min implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->min = (float)$param;
+        $this->max = (float)$param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->min;
+        return $this->max;
     }
 
     public function validate(mixed $value): Generator
     {
-        if ($value < $this->min) {
+        if ($value > $this->max) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must be at least %min%'
+                '%type% value must not be greater than %max%'
             );
         }
 
@@ -62,10 +62,10 @@ class Min implements Constraint
     public function constrain(mixed $value): mixed
     {
         if (
-            $this->min !== null &&
-            $value < $this->min
+            $this->max !== null &&
+            $value > $this->max
         ) {
-            $value = $this->min;
+            $value = $this->max;
         }
 
         return $value;

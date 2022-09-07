@@ -7,20 +7,21 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\String;
 
+use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
 
 /**
- * @implements Constraint<string, string>
+ * @implements Constraint<int, string>
  */
-class Pattern implements Constraint
+class MaxLength implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<string, string>
+     * @phpstan-use ConstraintTrait<int, string>
      */
     use ConstraintTrait;
 
@@ -28,7 +29,7 @@ class Pattern implements Constraint
         'string', 'string:'
     ];
 
-    protected ?string $pattern = null;
+    protected ?int $length = null;
 
     public function getWeight(): int
     {
@@ -37,29 +38,33 @@ class Pattern implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->pattern = $param;
+        if ($param <= 0) {
+            throw Exceptional::InvalidArgument(
+                'Max length must be greater than 0'
+            );
+        }
+
+        $this->length = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->pattern;
+        return $this->length;
     }
 
     public function validate(mixed $value): Generator
     {
+        $length = mb_strlen((string)$value);
+
         if (
-            $this->pattern !== null &&
-            !filter_var(
-                (string)$value,
-                \FILTER_VALIDATE_REGEXP,
-                ['options' => ['regexp' => $this->pattern]]
-            )
+            $this->length > 0 &&
+            $length > $this->length
         ) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value does not match pattern %pattern%'
+                '%type% value cannot be longer than %maxLength% characters'
             );
         }
 
@@ -68,15 +73,10 @@ class Pattern implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        if (
-            $this->pattern !== null &&
-            !filter_var(
-                $value,
-                \FILTER_VALIDATE_REGEXP,
-                ['options' => ['regexp' => $this->pattern]]
-            )
-        ) {
-            $value = '';
+        $length = mb_strlen($value);
+
+        if ($length > $this->length) {
+            $value = substr($value, 0, $this->length);
         }
 
         return $value;

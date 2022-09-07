@@ -7,64 +7,65 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\String;
 
-use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
 
 /**
- * @implements Constraint<int, string>
+ * @implements Constraint<bool, string>
  */
-class MaxLength implements Constraint
+class Emojis implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<int, string>
+     * @phpstan-use ConstraintTrait<bool, string>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string', 'string:'
+        'string'
     ];
 
-    protected ?int $length = null;
+    public const REGEX = '%(?:
+        \xF0[\x90-\xBF][\x80-\xBF]{2} |     # planes 1-3
+        [\xF1-\xF3][\x80-\xBF]{3}     |     # planes 4-15
+        \xF4[\x80-\x8F][\x80-\xBF]{2}       # plane 16
+    )%xs';
+
+    protected bool $emojis = false;
 
     public function getWeight(): int
     {
-        return 20;
+        return 50;
     }
 
     public function setParameter(mixed $param): static
     {
-        if ($param <= 0) {
-            throw Exceptional::InvalidArgument(
-                'Max length must be greater than 0'
-            );
-        }
-
-        $this->length = $param;
+        $this->emojis = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->length;
+        return $this->emojis;
     }
 
     public function validate(mixed $value): Generator
     {
-        $length = mb_strlen((string)$value);
+        if ($value === null) {
+            return true;
+        }
 
         if (
-            $this->length > 0 &&
-            $length > $this->length
+            !$this->emojis &&
+            preg_match(self::REGEX, (string)$value)
         ) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value cannot be longer than %maxLength% characters'
+                '%type% value must not contain emojis'
             );
         }
 
@@ -73,10 +74,8 @@ class MaxLength implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        $length = mb_strlen($value);
-
-        if ($length > $this->length) {
-            $value = substr($value, 0, $this->length);
+        if (!$this->emojis) {
+            $value = preg_replace(self::REGEX, '', $value) ?? $value;
         }
 
         return $value;

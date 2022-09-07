@@ -7,49 +7,47 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\DateTime;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
+use Stringable;
 
 /**
- * @implements Constraint<bool, string>
+ * @implements Constraint<DateTimeInterface|string|Stringable|int|null, Carbon>
  */
-class Emojis implements Constraint
+class Min implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, string>
+     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int|null, Carbon>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string'
+        'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
     ];
 
-    public const REGEX = '%(?:
-        \xF0[\x90-\xBF][\x80-\xBF]{2} |     # planes 1-3
-        [\xF1-\xF3][\x80-\xBF]{3}     |     # planes 4-15
-        \xF4[\x80-\x8F][\x80-\xBF]{2}       # plane 16
-    )%xs';
-
-    protected bool $emojis = false;
+    protected ?Carbon $min = null;
 
     public function getWeight(): int
     {
-        return 50;
+        return 20;
     }
 
     public function setParameter(mixed $param): static
     {
-        $this->emojis = $param;
+        /** @phpstan-ignore-next-line */
+        $this->min = new Carbon($param);
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->emojis;
+        return $this->min;
     }
 
     public function validate(mixed $value): Generator
@@ -58,14 +56,11 @@ class Emojis implements Constraint
             return true;
         }
 
-        if (
-            !$this->emojis &&
-            preg_match(self::REGEX, (string)$value)
-        ) {
+        if ($value->lessThan($this->min)) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must not contain emojis'
+                '%type% value must be on or after %min%'
             );
         }
 
@@ -74,8 +69,8 @@ class Emojis implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        if (!$this->emojis) {
-            $value = preg_replace(self::REGEX, '', $value) ?? $value;
+        if ($value->lessThan($this->min)) {
+            $value = new Carbon('now');
         }
 
         return $value;

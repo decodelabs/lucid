@@ -7,8 +7,9 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\String;
 
+use DecodeLabs\Dictum;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
@@ -18,7 +19,7 @@ use Generator;
 /**
  * @implements Constraint<int, string>
  */
-class MinLength implements Constraint
+class MaxWords implements Constraint
 {
     /**
      * @phpstan-use ConstraintTrait<int, string>
@@ -26,45 +27,45 @@ class MinLength implements Constraint
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'string', 'string:'
+        'string'
     ];
 
-    protected ?int $length = null;
+    protected ?int $words = null;
 
     public function getWeight(): int
     {
-        return 20;
+        return 25;
     }
 
     public function setParameter(mixed $param): static
     {
         if ($param <= 0) {
             throw Exceptional::InvalidArgument(
-                'Max length must be greater than 0'
+                'Max words must be greater than 0'
             );
         }
 
-        $this->length = $param;
+        $this->words = $param;
         return $this;
     }
 
     public function getParameter(): mixed
     {
-        return $this->length;
+        return $this->words;
     }
 
     public function validate(mixed $value): Generator
     {
-        $length = mb_strlen((string)$value);
+        $words = Dictum::countWords((string)$value);
 
         if (
-            $this->length > 0 &&
-            $length < $this->length
+            $this->words > 0 &&
+            $words > $this->words
         ) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must contain at least %minLength% characters'
+                '%type% value cannot contain more than %maxWords% words'
             );
         }
 
@@ -73,6 +74,14 @@ class MinLength implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        return str_pad($value, (int)$this->length, ' ');
+        $words = Dictum::countWords($value);
+
+        if ($words > $this->words) {
+            $parts = explode(' ', $value);
+            $parts = array_slice($parts, 0, $this->words);
+            $value = implode(' ', $parts);
+        }
+
+        return $value;
     }
 }

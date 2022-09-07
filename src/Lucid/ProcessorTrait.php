@@ -95,9 +95,10 @@ trait ProcessorTrait
         }
 
         if (!isset($this->constraints[$constraint])) {
-            $class = Archetype::resolve(Constraint::class, ucfirst($constraint));
-            $this->checkConstraintTypes($constraint, $class);
+            $spec = $this->getName() . ':' . implode(':', $this->getOutputTypes());
+            $class = Archetype::resolve(Constraint::class, $spec . ':' . ucfirst($constraint));
 
+            $this->checkConstraintTypes($constraint, $class);
             $this->constraints[$constraint] = new $class($this);
         }
 

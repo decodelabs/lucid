@@ -7,13 +7,12 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\Number;
 
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 
 /**
- * @template int|float
  * @implements Constraint<array<int|float>, int|float>
  */
 class Range implements Constraint
@@ -23,7 +22,9 @@ class Range implements Constraint
      */
     use ConstraintTrait;
 
-    protected mixed $range = null;
+    public const OUTPUT_TYPES = [
+        'int', 'float', 'number'
+    ];
 
     public function getWeight(): int
     {

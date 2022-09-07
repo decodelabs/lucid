@@ -7,28 +7,31 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\DateTime;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Error;
 use Generator;
+use Stringable;
 
 /**
- * @implements Constraint<float, int|float>
+ * @implements Constraint<DateTimeInterface|string|Stringable|int|null, Carbon>
  */
 class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<float, int|float>
+     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int|null, Carbon>
      */
     use ConstraintTrait;
 
     public const OUTPUT_TYPES = [
-        'int', 'float'
+        'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
     ];
 
-    protected ?float $max = null;
+    protected ?Carbon $max = null;
 
     public function getWeight(): int
     {
@@ -37,7 +40,8 @@ class Max implements Constraint
 
     public function setParameter(mixed $param): static
     {
-        $this->max = (float)$param;
+        /** @phpstan-ignore-next-line */
+        $this->max = new Carbon($param);
         return $this;
     }
 
@@ -48,11 +52,15 @@ class Max implements Constraint
 
     public function validate(mixed $value): Generator
     {
-        if ($value > $this->max) {
+        if ($value === null) {
+            return true;
+        }
+
+        if ($value->greaterThan($this->max)) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value must not be greater than %max%'
+                '%type% value must be on or before %max%'
             );
         }
 
@@ -61,11 +69,8 @@ class Max implements Constraint
 
     public function constrain(mixed $value): mixed
     {
-        if (
-            $this->max !== null &&
-            $value > $this->max
-        ) {
-            $value = $this->max;
+        if ($value->greaterThan($this->max)) {
+            $value = new Carbon('now');
         }
 
         return $value;

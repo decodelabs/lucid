@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid\Constraint;
+namespace DecodeLabs\Lucid\Constraint\String;
 
 use DecodeLabs\Dictum;
 use DecodeLabs\Exceptional;
@@ -19,7 +19,7 @@ use Generator;
 /**
  * @implements Constraint<int, string>
  */
-class MaxWords implements Constraint
+class MinWords implements Constraint
 {
     /**
      * @phpstan-use ConstraintTrait<int, string>
@@ -41,7 +41,7 @@ class MaxWords implements Constraint
     {
         if ($param <= 0) {
             throw Exceptional::InvalidArgument(
-                'Max words must be greater than 0'
+                'Min words must be greater than 0'
             );
         }
 
@@ -60,28 +60,15 @@ class MaxWords implements Constraint
 
         if (
             $this->words > 0 &&
-            $words > $this->words
+            $words < $this->words
         ) {
             yield new Error(
                 $this,
                 $value,
-                '%type% value cannot contain more than %maxWords% words'
+                '%type% value must contain at least %minWords% words'
             );
         }
 
         return true;
-    }
-
-    public function constrain(mixed $value): mixed
-    {
-        $words = Dictum::countWords($value);
-
-        if ($words > $this->words) {
-            $parts = explode(' ', $value);
-            $parts = array_slice($parts, 0, $this->words);
-            $value = implode(' ', $parts);
-        }
-
-        return $value;
     }
 }

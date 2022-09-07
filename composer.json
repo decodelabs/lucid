@@ -13,9 +13,11 @@
 
         "decodelabs/archetype": "^0.2",
         "decodelabs/coercion": "^0.2.2",
-        "decodelabs/dictum": "0.4",
+        "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
-        "decodelabs/tightrope": "^0.1.1"
+        "decodelabs/tightrope": "^0.1.1",
+
+        "nesbot/carbon": "^2.25"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
@@ -29,9 +31,13 @@
     "suggest": {},
     "autoload": {
         "psr-4": {
-            "DecodeLabs\\Lucid\\": "src/",
+            "DecodeLabs\\Archetype\\": "src/Archetype/",
+            "DecodeLabs\\Lucid\\": "src/Lucid/",
             "DecodeLabs\\Lucid\\Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "src/global.php"
+        ]
     },
     "extra": {
         "branch-alias": {
