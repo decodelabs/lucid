@@ -33,8 +33,7 @@
     "autoload": {
         "psr-4": {
             "DecodeLabs\\Archetype\\": "src/Archetype/",
-            "DecodeLabs\\Lucid\\": "src/Lucid/",
-            "DecodeLabs\\Lucid\\Tests\\": "tests/"
+            "DecodeLabs\\Lucid\\": "src/Lucid/"
         },
         "files": [
             "src/global.php"
