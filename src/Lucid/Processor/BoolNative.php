@@ -52,12 +52,4 @@ class BoolNative implements Processor
 
         return Dictum::toBoolean($value);
     }
-
-    /**
-     * Convert prepared value to bool
-     */
-    public function forceCoerce(mixed $value): ?bool
-    {
-        return $this->coerce($value) ?? false;
-    }
 }

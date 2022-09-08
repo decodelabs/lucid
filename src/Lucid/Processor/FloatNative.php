@@ -39,12 +39,4 @@ class FloatNative implements Processor
 
         return Coercion::toFloat($value);
     }
-
-    /**
-     * Convert prepared value to float
-     */
-    public function forceCoerce(mixed $value): ?float
-    {
-        return Coercion::toFloatOrNull($value) ?? 0;
-    }
 }

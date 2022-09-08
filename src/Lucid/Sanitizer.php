@@ -78,7 +78,7 @@ class Sanitizer
             $value = $processor->alterValue($value);
         }
 
-        foreach ($gen = $processor->validateConstraints($value) as $error) {
+        foreach ($gen = $processor->validate($value) as $error) {
             if ($error === null) {
                 continue;
             }
@@ -90,23 +90,6 @@ class Sanitizer
         }
 
         return $gen->getReturn() ?? $value;
-    }
-
-
-    /**
-     * Process value as type
-     *
-     * @param array<string, mixed>|Closure|null $setup
-     */
-    public function forceAs(
-        string $type,
-        array|Closure|null $setup = null
-    ): mixed {
-        $processor = $this->loadProcessor($type, $setup);
-        $value = $processor->prepareValue($this->value);
-        $value = $processor->forceCoerce($value);
-        $value = $processor->alterValue($value);
-        return $processor->constrain($value);
     }
 
 
@@ -130,7 +113,7 @@ class Sanitizer
 
         $result = new Result($processor);
 
-        foreach ($gen = $processor->validateConstraints($value) as $error) {
+        foreach ($gen = $processor->validate($value) as $error) {
             if ($error === null) {
                 continue;
             }

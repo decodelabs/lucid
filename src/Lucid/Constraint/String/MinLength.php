@@ -70,9 +70,4 @@ class MinLength implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        return str_pad($value, (int)$this->length, ' ');
-    }
 }

@@ -44,7 +44,7 @@ jobs:
           dependency-versions: "highest"
 
       - name: "Check source code for syntax errors"
-        run: "composer exec -- parallel-lint src/ ecs.php"
+        run: "composer exec -- parallel-lint src/ stubs/ ecs.php"
         # @TODO Check template files for syntax errors
 
   unit_tests:

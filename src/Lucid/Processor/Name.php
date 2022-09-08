@@ -13,7 +13,6 @@ use DecodeLabs\Coercion;
 use DecodeLabs\Dictum;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\ProcessorTrait;
-use Stringable;
 
 /**
  * @implements Processor<string>
@@ -46,19 +45,7 @@ class Name implements Processor
             return null;
         }
 
-        if ($value instanceof Stringable) {
-            $value = (string)$value;
-        }
-
         $string = Coercion::toString($value);
         return Dictum::name($string);
-    }
-
-    /**
-     * Convert prepared value to string
-     */
-    public function forceCoerce(mixed $value): ?string
-    {
-        return $this->coerce($value) ?? '';
     }
 }

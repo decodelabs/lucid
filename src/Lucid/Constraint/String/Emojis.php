@@ -71,13 +71,4 @@ class Emojis implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        if (!$this->emojis) {
-            $value = preg_replace(self::REGEX, '', $value) ?? $value;
-        }
-
-        return $value;
-    }
 }

@@ -65,13 +65,4 @@ class Min implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        if ($value->lessThan($this->min)) {
-            $value = new Carbon('now');
-        }
-
-        return $value;
-    }
 }

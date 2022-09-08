@@ -39,12 +39,4 @@ class IntNative implements Processor
 
         return Coercion::toInt($value);
     }
-
-    /**
-     * Convert prepared value to int
-     */
-    public function forceCoerce(mixed $value): ?int
-    {
-        return Coercion::toIntOrNull($value) ?? 0;
-    }
 }
