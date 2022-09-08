@@ -13,7 +13,7 @@ use Carbon\CarbonInterval;
 use DateInterval;
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
-use DecodeLabs\Lucid\Error;
+use DecodeLabs\Lucid\Validate\Error;
 use Generator;
 use Stringable;
 

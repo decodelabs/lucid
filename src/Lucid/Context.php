@@ -9,17 +9,19 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid;
 
-use DecodeLabs\Lucid\Sanitizer\DirectContextProvider;
-use DecodeLabs\Lucid\Sanitizer\DirectContextProviderTrait;
+use DecodeLabs\Lucid\Provider\DirectContext;
+use DecodeLabs\Lucid\Provider\DirectContextTrait;
+use DecodeLabs\Lucid\Sanitizer\ValueContainer;
 
 /**
  * @template TValue
- * @implements DirectContextProvider<TValue>
  */
-class Context implements DirectContextProvider
+class Context implements DirectContext
 {
-    /**
-     * @use DirectContextProviderTrait<TValue>
-     */
-    use DirectContextProviderTrait;
+    use DirectContextTrait;
+
+    public function newSanitizer(mixed $value): Sanitizer
+    {
+        return new ValueContainer($value);
+    }
 }

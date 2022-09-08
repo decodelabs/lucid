@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid;
 
+use Closure;
 use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
 use Generator;
@@ -24,14 +25,8 @@ trait ProcessorTrait
      */
     protected array $constraints = [];
 
-    /**
-     * @phpstan-var Sanitizer<TOutput>
-     */
     protected Sanitizer $sanitizer;
 
-    /**
-     * @phpstan-param Sanitizer<TOutput> $sanitizer
-     */
     public function __construct(Sanitizer $sanitizer)
     {
         $this->sanitizer = $sanitizer;
@@ -56,9 +51,18 @@ trait ProcessorTrait
         return $this->sanitizer;
     }
 
+    public function isMultiValue(): bool
+    {
+        return false;
+    }
+
 
     final public function prepareValue(mixed $value): mixed
     {
+        if ($value instanceof Closure) {
+            $value = $value($this);
+        }
+
         foreach ($this->constraints as $constraint) {
             $value = $constraint->prepareValue($value);
         }
