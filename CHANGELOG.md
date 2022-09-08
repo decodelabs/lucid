@@ -1,4 +1,9 @@
-## v0.1.0 (2022-09-08)
+## v0.3.0 (2022-09-08)
+* Moved main interfaces to lucid-support
+* Support value deferral via Closure
+* Added support for multi value Processors
+
+## v0.2.0 (2022-09-08)
 * Moved Sanitizer Provider interfaces to lucid-support
 * Removed force* methods
 * Added Processor level validation hook
