@@ -15,6 +15,7 @@
         "decodelabs/coercion": "^0.2.2",
         "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
+        "decodelabs/lucid-support": "^0.1",
         "decodelabs/veneer": "^0.9.2",
 
         "nesbot/carbon": "^2.25"
@@ -42,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "0.1.x-dev"
+            "dev-develop": "0.2.x-dev"
         }
     },
     "config": {
@@ -54,10 +55,10 @@
         "analyze": "phpstan analyze --no-progress",
         "ecs": "ecs check --no-progress-bar",
         "ecs-fix": "ecs check --no-progress-bar --fix",
-        "lint": "parallel-lint src/ stubs/ tests/ ecs.php",
-        "eclint": "eclint check src/ stubs/ tests/ ecs.php",
-        "eclint-fix": "eclint fix src/ stubs/ tests/ ecs.php",
-        "non-ascii": "! LC_ALL=C.UTF-8 find src/ stubs/ tests/ -type f -name \"*.php\" -print0 | xargs -0 -- grep -PHn \"[^ -~]\" | grep -v '// @ignore-non-ascii$'",
+        "lint": "parallel-lint src/ stubs/ ecs.php",
+        "eclint": "eclint check src/ stubs/ ecs.php",
+        "eclint-fix": "eclint fix src/ stubs/ ecs.php",
+        "non-ascii": "! LC_ALL=C.UTF-8 find src/ stubs/ -type f -name \"*.php\" -print0 | xargs -0 -- grep -PHn \"[^ -~]\" | grep -v '// @ignore-non-ascii$'",
         "check": [
             "@composer update",
             "@analyze",
