@@ -18,7 +18,7 @@ use Generator;
 /**
  * @implements Processor<string>
  */
-class Email implements Processor
+class Url implements Processor
 {
     /**
      * @phpstan-use ProcessorTrait<string>
@@ -27,7 +27,7 @@ class Email implements Processor
 
     public function getOutputTypes(): array
     {
-        return ['string:email'];
+        return ['string:url'];
     }
 
     /**
@@ -41,10 +41,11 @@ class Email implements Processor
 
         $value = Coercion::toString($value);
 
-        $value = strtolower($value);
-        $value = str_replace([' at ', ' dot '], ['@', '.'], $value);
+        if (!preg_match('/^[a-zA-Z0-9]+\:/', $value)) {
+            $value = 'https://' . $value;
+        }
 
-        if (false === ($output = filter_var($value, \FILTER_SANITIZE_EMAIL))) {
+        if (false === ($output = filter_var($value, \FILTER_SANITIZE_URL))) {
             $output = $value;
         }
 
@@ -53,15 +54,15 @@ class Email implements Processor
 
 
     /**
-     * Check email is valid
+     * Check URL is valid
      */
     public function validateType(mixed $value): Generator
     {
-        if (!filter_var($value, \FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($value, \FILTER_VALIDATE_URL)) {
             yield new Error(
                 $this,
                 $value,
-                'Value is not a valid email address'
+                'Value is not a valid URL'
             );
 
             return false;
