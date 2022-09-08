@@ -11,7 +11,7 @@ namespace DecodeLabs\Lucid\Constraint;
 
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
-use DecodeLabs\Lucid\Error;
+use DecodeLabs\Lucid\Validate\Error;
 use Generator;
 
 /**
@@ -61,7 +61,7 @@ class Required implements Constraint
             yield new Error(
                 $this,
                 $value,
-                'Value is required'
+                '%type% value is required'
             );
         }
 

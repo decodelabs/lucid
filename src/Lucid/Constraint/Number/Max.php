@@ -11,7 +11,7 @@ namespace DecodeLabs\Lucid\Constraint\Number;
 
 use DecodeLabs\Lucid\Constraint;
 use DecodeLabs\Lucid\ConstraintTrait;
-use DecodeLabs\Lucid\Error;
+use DecodeLabs\Lucid\Validate\Error;
 use Generator;
 
 /**

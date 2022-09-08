@@ -7,56 +7,26 @@
 
 declare(strict_types=1);
 
-namespace DecodeLabs\Lucid;
+namespace DecodeLabs\Lucid\Sanitizer;
 
 use Closure;
 use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Lucid\Processor;
+use DecodeLabs\Lucid\Sanitizer;
 use DecodeLabs\Lucid\Validate\Result;
 
-/**
- * @template TInput
- */
-class Sanitizer
+class ValueContainer implements Sanitizer
 {
-    /**
-     * @phpstan-var TInput
-     */
-    protected mixed $value;
+    protected mixed $value = null;
 
 
     /**
      * Init with raw value
-     *
-     * @phpstan-param TInput $value
      */
     public function __construct(mixed $value)
     {
-        if ($value instanceof Closure) {
-            $value = $value();
-        }
-
         $this->value = $value;
-    }
-
-
-    /**
-     * Get type of TInput
-     */
-    public function getType(): string
-    {
-        return gettype($this->value);
-    }
-
-
-    /**
-     * Get original value
-     *
-     * @phpstan-return TInput
-     */
-    public function getValue(): mixed
-    {
-        return $this->value;
     }
 
 
