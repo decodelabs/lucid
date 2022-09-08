@@ -71,17 +71,4 @@ class MaxWords implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        $words = Dictum::countWords($value);
-
-        if ($words > $this->words) {
-            $parts = explode(' ', $value);
-            $parts = array_slice($parts, 0, $this->words);
-            $value = implode(' ', $parts);
-        }
-
-        return $value;
-    }
 }

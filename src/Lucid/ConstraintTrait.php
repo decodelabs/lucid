@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use Generator;
+use ReflectionClass;
 
 /**
  * @template TParam
@@ -42,6 +43,12 @@ trait ConstraintTrait
         }
 
         return null;
+    }
+
+    public function getName(): string
+    {
+        return (new ReflectionClass($this))
+            ->getShortName();
     }
 
     public function getWeight(): int
@@ -85,14 +92,5 @@ trait ConstraintTrait
     {
         yield null;
         return true;
-    }
-
-    /**
-     * @phpstan-param TValue $value
-     * @phpstan-return TValue
-     */
-    public function constrain(mixed $value): mixed
-    {
-        return $value;
     }
 }

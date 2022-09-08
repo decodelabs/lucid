@@ -65,13 +65,4 @@ class Max implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        if ($value->greaterThan($this->max)) {
-            $value = new Carbon('now');
-        }
-
-        return $value;
-    }
 }

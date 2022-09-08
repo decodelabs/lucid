@@ -59,12 +59,4 @@ class StringNative implements Processor
 
         return Coercion::forceString($value);
     }
-
-    /**
-     * Convert prepared value to string
-     */
-    public function forceCoerce(mixed $value): ?string
-    {
-        return $this->coerce($value) ?? '';
-    }
 }

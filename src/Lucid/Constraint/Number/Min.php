@@ -58,16 +58,4 @@ class Min implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        if (
-            $this->min !== null &&
-            $value < $this->min
-        ) {
-            $value = $this->min;
-        }
-
-        return $value;
-    }
 }

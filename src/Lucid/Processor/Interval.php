@@ -70,12 +70,4 @@ class Interval implements Processor
             'Unable to coerce value to DateTime'
         );
     }
-
-    /**
-     * Convert prepared value to DateTime
-     */
-    public function forceCoerce(mixed $value): ?CarbonInterval
-    {
-        return $this->coerce($value) ?? new CarbonInterval();
-    }
 }

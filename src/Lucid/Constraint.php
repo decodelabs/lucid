@@ -27,6 +27,7 @@ interface Constraint
      */
     public static function getProcessorOutputTypes(): ?array;
 
+    public function getName(): string;
     public function getWeight(): int;
 
     /**
@@ -54,10 +55,4 @@ interface Constraint
      * @phpstan-return Generator<int, Error|null, mixed, bool>
      */
     public function validate(mixed $value): Generator;
-
-    /**
-     * @phpstan-param TValue $value
-     * @phpstan-return TValue
-     */
-    public function constrain(mixed $value): mixed;
 }

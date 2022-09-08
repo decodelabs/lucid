@@ -65,20 +65,4 @@ class Pattern implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        if (
-            $this->pattern !== null &&
-            !filter_var(
-                $value,
-                \FILTER_VALIDATE_REGEXP,
-                ['options' => ['regexp' => $this->pattern]]
-            )
-        ) {
-            $value = '';
-        }
-
-        return $value;
-    }
 }

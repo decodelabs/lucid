@@ -170,24 +170,28 @@ trait ProcessorTrait
 
 
 
-    public function validateConstraints(mixed $value): Generator
+    public function validate(mixed $value): Generator
     {
+        // Type validation
+        yield from $gen = $this->validateType($value);
+
+        if (false === $gen->getReturn()) {
+            return;
+        }
+
+        // Constraint validation
         foreach ($this->constraints as $constraint) {
             yield from $gen = $constraint->validate($value);
 
             if (false === $gen->getReturn()) {
-                break;
+                return;
             }
         }
     }
 
 
-    public function constrain(mixed $value): mixed
+    public function validateType(mixed $value): Generator
     {
-        foreach ($this->constraints as $constraint) {
-            $value = $constraint->constrain($value);
-        }
-
-        return $value;
+        yield null;
     }
 }

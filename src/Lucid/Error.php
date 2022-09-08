@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use DecodeLabs\Coercion;
-use ReflectionClass;
+use DecodeLabs\Lucid\Constraint\Processor as ProcessorConstraint;
 
 class Error
 {
@@ -29,23 +29,26 @@ class Error
     protected string $constraintKey;
 
     /**
-     * @phpstan-param Constraint<mixed, mixed> $constraint
+     * @phpstan-param Constraint<mixed, mixed>|Processor<mixed> $constraint
      * @param array<string, mixed> $params
      */
     public function __construct(
-        Constraint $constraint,
+        Constraint|Processor $constraint,
         mixed $value,
         string $message,
         array $params = []
     ) {
+        if ($constraint instanceof Processor) {
+            $constraint = new ProcessorConstraint($constraint);
+        }
+
         $this->constraint = $constraint;
         $this->value = $value;
         $this->message = $message;
         $this->params = $params;
 
         $this->constraintKey = lcfirst(
-            (new ReflectionClass($this->constraint))
-                ->getShortName()
+            $this->constraint->getName()
         );
     }
 

@@ -70,15 +70,4 @@ class MaxLength implements Constraint
 
         return true;
     }
-
-    public function constrain(mixed $value): mixed
-    {
-        $length = mb_strlen($value);
-
-        if ($length > $this->length) {
-            $value = substr($value, 0, $this->length);
-        }
-
-        return $value;
-    }
 }

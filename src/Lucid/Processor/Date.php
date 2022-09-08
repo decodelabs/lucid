@@ -55,12 +55,4 @@ class Date implements Processor
             'Unable to coerce value to DateTime'
         );
     }
-
-    /**
-     * Convert prepared value to DateTime
-     */
-    public function forceCoerce(mixed $value): ?Carbon
-    {
-        return $this->coerce($value) ?? new Carbon('now');
-    }
 }

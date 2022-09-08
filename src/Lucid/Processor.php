@@ -53,13 +53,6 @@ interface Processor
      */
     public function coerce(mixed $value): mixed;
 
-    /**
-     * Force coerce to output type
-     *
-     * @phpstan-return TOutput
-     */
-    public function forceCoerce(mixed $value): mixed;
-
 
     /**
      * Test validity of constraint
@@ -90,13 +83,13 @@ interface Processor
      * @phpstan-param TOutput|null $value
      * @return Generator<Error|null>
      */
-    public function validateConstraints(mixed $value): Generator;
+    public function validate(mixed $value): Generator;
 
     /**
-     * Apply constraints to coerced input
+     * Test type and yield errors in sequence
      *
-     * @phpstan-param TOutput $value
-     * @phpstan-return TOutput
+     * @phpstan-param TOutput|null $value
+     * @return Generator<Error|null>
      */
-    public function constrain(mixed $value): mixed;
+    public function validateType(mixed $value): Generator;
 }
