@@ -63,7 +63,7 @@ if(!$result->isValid()) {
 Or conversely if you just need a yes or no answer, use <code>is()</code>:
 
 ```php
-if(!Lucid::validate('not a number', 'float')) {
+if(!Lucid::is('not a number', 'float')) {
     // do something
 }
 ```
