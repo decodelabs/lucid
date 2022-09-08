@@ -60,6 +60,14 @@ if(!$result->isValid()) {
 }
 ```
 
+Or conversely if you just need a yes or no answer, use <code>is()</code>:
+
+```php
+if(!Lucid::validate('not a number', 'float')) {
+    // do something
+}
+```
+
 ### Importing
 
 Atlas uses [Veneer](https://github.com/decodelabs/veneer) to provide a unified frontage under <code>DecodeLabs\Atlas</code>.
