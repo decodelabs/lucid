@@ -28,7 +28,7 @@
         "symplify/easy-coding-standard": "^11",
 
         "decodelabs/phpstan-decodelabs": "^0.6",
-        "decodelabs/compass": "^0.1"
+        "decodelabs/compass": "^0.1.1"
     },
     "suggest": {
         "decodelabs/compass": "IP address validation"

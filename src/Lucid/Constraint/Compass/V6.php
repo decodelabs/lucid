@@ -54,10 +54,6 @@ class V6 implements Constraint
             return false;
         }
 
-        $value = $value instanceof Range ?
-            $value->getFirstIp() :
-            $value;
-
         if ($this->v6 !== $value->isV6()) {
             yield new Error(
                 $this,

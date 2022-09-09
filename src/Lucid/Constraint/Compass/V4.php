@@ -54,10 +54,6 @@ class V4 implements Constraint
             return false;
         }
 
-        $value = $value instanceof Range ?
-            $value->getFirstIp() :
-            $value;
-
         if ($this->v4 !== $value->isV4()) {
             yield new Error(
                 $this,
