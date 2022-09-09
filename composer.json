@@ -28,10 +28,11 @@
         "symplify/easy-coding-standard": "^11",
 
         "decodelabs/phpstan-decodelabs": "^0.6",
-        "decodelabs/atlas": "^0.10.1",
-        "decodelabs/terminus": "^0.8.3"
+        "decodelabs/compass": "^0.1"
     },
-    "suggest": {},
+    "suggest": {
+        "decodelabs/compass": "IP address validation"
+    },
     "autoload": {
         "psr-4": {
             "DecodeLabs\\Archetype\\": "src/Archetype/",
