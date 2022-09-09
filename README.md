@@ -70,7 +70,7 @@ if(!Lucid::is('not a number', 'float')) {
 
 ### Importing
 
-Atlas uses [Veneer](https://github.com/decodelabs/veneer) to provide a unified frontage under <code>DecodeLabs\Atlas</code>.
+Lucid uses [Veneer](https://github.com/decodelabs/veneer) to provide a unified frontage under <code>DecodeLabs\Lucid</code>.
 You can access all the primary functionality via this static frontage without compromising testing and dependency injection.
 
 
