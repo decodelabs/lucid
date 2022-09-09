@@ -1,3 +1,6 @@
+## v0.3.1 (2022-09-09)
+* Added Compass IP and Range support
+
 ## v0.3.0 (2022-09-08)
 * Moved main interfaces to lucid-support
 * Support value deferral via Closure
