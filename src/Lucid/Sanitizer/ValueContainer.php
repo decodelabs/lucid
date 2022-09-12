@@ -12,9 +12,12 @@ namespace DecodeLabs\Lucid\Sanitizer;
 use Closure;
 use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Lucid\Constraint\Processor as ProcessorConstraint;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\Sanitizer;
+use DecodeLabs\Lucid\Validate\Error;
 use DecodeLabs\Lucid\Validate\Result;
+use Exception;
 
 class ValueContainer implements Sanitizer
 {
@@ -42,7 +45,16 @@ class ValueContainer implements Sanitizer
     ): mixed {
         $processor = $this->loadProcessor($type, $setup);
         $value = $processor->prepareValue($this->value);
-        $value = $processor->coerce($value);
+
+        try {
+            $value = $processor->coerce($value);
+        } catch (Exception $e) {
+            throw Exceptional::UnexpectedValue([
+                'message' => 'Unable to coerce value to ' . $processor->getName(),
+                'original' => $e,
+                'data' => $value
+            ]);
+        }
 
         if ($value !== null) {
             $value = $processor->alterValue($value);
@@ -74,14 +86,33 @@ class ValueContainer implements Sanitizer
         array|Closure|null $setup = null
     ): Result {
         $processor = $this->loadProcessor($type, $setup);
-        $value = $processor->prepareValue($this->value);
-        $value = $processor->coerce($value);
+        $result = new Result($processor);
+        $value = $this->value;
 
-        if ($value !== null) {
-            $value = $processor->alterValue($value);
+        try {
+            $value = $processor->prepareValue($value);
+            $value = $processor->coerce($value);
+
+            if ($value !== null) {
+                $value = $processor->alterValue($value);
+            }
+        } catch (Exception $e) {
+            $result->setValue($value);
+
+            $result->addError(new Error(
+                new ProcessorConstraint($processor),
+                $value,
+                'Unable to coerce value to ' . $processor->getName() . ': %message%',
+                [
+                    'exception' => $e,
+                    'message' => $e->getMessage()
+                ]
+            ));
+
+            return $result;
         }
 
-        $result = new Result($processor);
+
 
         foreach ($gen = $processor->validate($value) as $error) {
             if ($error === null) {
