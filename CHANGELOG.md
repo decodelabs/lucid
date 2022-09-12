@@ -1,3 +1,7 @@
+## v0.3.3 (2022-09-12)
+* Added Spectrum Colour Processor and Constraints
+* Added Exception management to validator
+
 ## v0.3.2 (2022-09-12)
 * Moved Interval constraints back into place
 

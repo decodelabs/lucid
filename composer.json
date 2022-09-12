@@ -28,10 +28,12 @@
         "symplify/easy-coding-standard": "^11",
 
         "decodelabs/phpstan-decodelabs": "^0.6",
-        "decodelabs/compass": "^0.1.1"
+        "decodelabs/compass": "^0.1.1",
+        "decodelabs/spectrum": "^0.2.1"
     },
     "suggest": {
-        "decodelabs/compass": "IP address validation"
+        "decodelabs/compass": "IP address validation support",
+        "decodelabs/spectrum": "Color validation support"
     },
     "autoload": {
         "psr-4": {
