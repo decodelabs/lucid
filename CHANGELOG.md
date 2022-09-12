@@ -1,3 +1,6 @@
+## v0.3.2 (2022-09-12)
+* Moved Interval constraints back into place
+
 ## v0.3.1 (2022-09-09)
 * Added Compass IP and Range support
 
