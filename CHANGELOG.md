@@ -1,3 +1,7 @@
+## v0.3.5 (2022-09-27)
+* Updated Veneer stub
+* Updated composer check script
+
 ## v0.3.4 (2022-09-27)
 * Updated Veneer dependency
 
