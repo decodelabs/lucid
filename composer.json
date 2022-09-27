@@ -16,7 +16,7 @@
         "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/lucid-support": "^0.2.1",
-        "decodelabs/veneer": "^0.10",
+        "decodelabs/veneer": "^0.10.7",
 
         "nesbot/carbon": "^2.25"
     },
@@ -29,7 +29,9 @@
 
         "decodelabs/phpstan-decodelabs": "^0.6",
         "decodelabs/compass": "^0.1.1",
-        "decodelabs/spectrum": "^0.2.1"
+        "decodelabs/spectrum": "^0.2.1",
+        "decodelabs/atlas": "^0.10.4",
+        "decodelabs/terminus": "^0.8.4"
     },
     "suggest": {
         "decodelabs/compass": "IP address validation support",
@@ -56,16 +58,20 @@
     },
     "scripts": {
         "analyze": "phpstan analyze --no-progress",
+        "clear-phpstan": "phpstan clear-result-cache",
         "ecs": "ecs check --no-progress-bar",
         "ecs-fix": "ecs check --no-progress-bar --fix",
         "lint": "parallel-lint src/ stubs/ ecs.php",
         "eclint": "eclint check src/ stubs/ ecs.php",
         "eclint-fix": "eclint fix src/ stubs/ ecs.php",
         "non-ascii": "! LC_ALL=C.UTF-8 find src/ stubs/ -type f -name \"*.php\" -print0 | xargs -0 -- grep -PHn \"[^ -~]\" | grep -v '// @ignore-non-ascii$'",
+        "veneer-stub": "vendor/bin/veneer-stub",
         "check": [
             "@composer update",
+            "@veneer-stub",
+            "@clear-phpstan",
             "@analyze",
-            "@ecs",
+            "@ecs-fix",
             "@lint",
             "@eclint",
             "@non-ascii"
