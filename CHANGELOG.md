@@ -1,3 +1,6 @@
+## v0.3.4 (2022-09-27)
+* Updated Veneer dependency
+
 ## v0.3.3 (2022-09-12)
 * Added Spectrum Colour Processor and Constraints
 * Added Exception management to validator
