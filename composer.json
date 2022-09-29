@@ -16,7 +16,7 @@
         "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/lucid-support": "^0.2.1",
-        "decodelabs/veneer": "^0.10.7",
+        "decodelabs/veneer": "^0.10.10",
 
         "nesbot/carbon": "^2.25"
     },
