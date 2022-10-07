@@ -7,7 +7,13 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-44CC11.svg?longCache=true&style=flat)](https://github.com/phpstan/phpstan)
 [![License](https://img.shields.io/packagist/l/decodelabs/lucid?style=flat)](https://packagist.org/packages/decodelabs/lucid)
 
-Flexible and expansive sanitisation and validation framework for PHP
+### Flexible and expansive sanitisation and validation framework for PHP
+
+Lucid provides a unified single-value sanitisation and validation structure for making sure your input makes sense.
+
+_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
+
+---
 
 
 ## Installation
@@ -20,7 +26,7 @@ composer require decodelabs/lucid
 
 ## Usage
 
-Lucid provides a unified single-value sanitisation and validation structure for making sure your input makes sense.
+Direct value sanitisation can be achieved quickly and painlessly:
 
 ```php
 use DecodeLabs\Lucid;
