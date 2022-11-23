@@ -26,7 +26,7 @@ class ListNative implements Processor
     /**
      * @phpstan-var Processor<TChild>
      */
-    protected Processor $childType;
+    protected ?Processor $childType = null;
 
     public function getOutputTypes(): array
     {
@@ -46,6 +46,18 @@ class ListNative implements Processor
     {
         $this->childType = $processor;
     }
+
+    /**
+     * Get child type
+     *
+     * @phpstan-return Processor<TChild>
+     */
+    public function getChildType(): ?Processor
+    {
+        return $this->childType;
+    }
+
+
 
     /**
      * Convert prepared value to bool or null
