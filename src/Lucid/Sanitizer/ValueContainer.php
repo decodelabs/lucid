@@ -153,6 +153,14 @@ class ValueContainer implements Sanitizer
             $type = 'Instance';
         }
 
+        // List
+        $list = false;
+
+        if (substr($type, -2) === '[]') {
+            $list = true;
+            $type = substr($type, 0, -2);
+        }
+
         $type = ucfirst($type);
 
         switch ($type) {
@@ -192,6 +200,13 @@ class ValueContainer implements Sanitizer
         }
 
         $processor->prepareConstraints();
+
+        if ($list) {
+            $prev = $processor;
+            $processor = new Processor\ListNative($this);
+            $processor->setChildType($prev);
+        }
+
         return $processor;
     }
 }
