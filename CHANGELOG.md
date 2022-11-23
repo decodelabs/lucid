@@ -1,3 +1,5 @@
+## v0.3.6 (2022-11-23)
+* Added [] list support to processors
 * Migrated to use effigy in CI workflow
 * Fixed PHP8.1 testing
 
