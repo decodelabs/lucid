@@ -1,3 +1,6 @@
+## v0.3.7 (2022-11-23)
+* Added getChildType() to ListNative
+
 ## v0.3.6 (2022-11-23)
 * Added [] list support to processors
 * Migrated to use effigy in CI workflow
