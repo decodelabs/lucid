@@ -13,7 +13,7 @@
 
         "decodelabs/archetype": "^0.2",
         "decodelabs/coercion": "^0.2.2",
-        "decodelabs/dictum": "^0.4",
+        "decodelabs/dictum": "^0.5",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/lucid-support": "^0.2.1",
         "decodelabs/veneer": "^0.10.10",

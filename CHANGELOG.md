@@ -1,3 +1,5 @@
+* Updated Dictum dependency
+
 ## v0.3.7 (2022-11-23)
 * Added getChildType() to ListNative
 
