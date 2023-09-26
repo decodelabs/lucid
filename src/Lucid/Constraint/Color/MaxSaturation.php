@@ -21,7 +21,7 @@ use Generator;
 class MaxSaturation implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<float, Color>
+     * @use ConstraintTrait<float, Color>
      */
     use ConstraintTrait;
 

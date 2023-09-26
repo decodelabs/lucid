@@ -22,7 +22,7 @@ use Stringable;
 class Interval implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<CarbonInterval>
+     * @use ProcessorTrait<CarbonInterval>
      */
     use ProcessorTrait;
 

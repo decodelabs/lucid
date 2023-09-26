@@ -20,7 +20,7 @@ use Generator;
 class Emojis implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, string>
+     * @use ConstraintTrait<bool, string>
      */
     use ConstraintTrait;
 

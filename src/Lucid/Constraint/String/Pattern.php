@@ -20,7 +20,7 @@ use Generator;
 class Pattern implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<string, string>
+     * @use ConstraintTrait<string, string>
      */
     use ConstraintTrait;
 

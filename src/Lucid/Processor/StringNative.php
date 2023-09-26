@@ -20,7 +20,7 @@ use Stringable;
 class StringNative implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<string>
+     * @use ProcessorTrait<string>
      */
     use ProcessorTrait;
 

@@ -21,7 +21,7 @@ use Generator;
 class Email implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<string>
+     * @use ProcessorTrait<string>
      */
     use ProcessorTrait;
 

@@ -21,7 +21,7 @@ use ReflectionClass;
 trait ProcessorTrait
 {
     /**
-     * @phpstan-var array<string, Constraint<mixed, TOutput>>
+     * @var array<string, Constraint<mixed, TOutput>>
      */
     protected array $constraints = [];
 

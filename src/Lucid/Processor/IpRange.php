@@ -23,7 +23,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class IpRange implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<Range>
+     * @use ProcessorTrait<Range>
      */
     use ProcessorTrait;
 

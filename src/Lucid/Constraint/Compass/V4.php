@@ -22,7 +22,7 @@ use Generator;
 class V4 implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, Ip|Range>
+     * @use ConstraintTrait<bool, Ip|Range>
      */
     use ConstraintTrait;
 

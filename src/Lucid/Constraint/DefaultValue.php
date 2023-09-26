@@ -19,7 +19,7 @@ use DecodeLabs\Lucid\ConstraintTrait;
 class DefaultValue implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<TValue, TValue>
+     * @use ConstraintTrait<TValue, TValue>
      */
     use ConstraintTrait;
 

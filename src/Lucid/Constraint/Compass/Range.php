@@ -24,7 +24,7 @@ use Generator;
 class Range implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<Ip|IpScope|string|int|BigInteger, Ip|IpRange>
+     * @use ConstraintTrait<Ip|IpScope|string|int|BigInteger, Ip|IpRange>
      */
     use ConstraintTrait;
 

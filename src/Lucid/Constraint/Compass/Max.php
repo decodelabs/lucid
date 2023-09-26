@@ -23,7 +23,7 @@ use Generator;
 class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<Ip|string|int|BigInteger, Ip|Range>
+     * @use ConstraintTrait<Ip|string|int|BigInteger, Ip|Range>
      */
     use ConstraintTrait;
 

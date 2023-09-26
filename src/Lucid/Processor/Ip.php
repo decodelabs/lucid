@@ -21,7 +21,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class Ip implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<IpAddress>
+     * @use ProcessorTrait<IpAddress>
      */
     use ProcessorTrait;
 

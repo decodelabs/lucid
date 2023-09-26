@@ -20,7 +20,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class Camel implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<string>
+     * @use ProcessorTrait<string>
      */
     use ProcessorTrait;
 

@@ -23,7 +23,7 @@ use Stringable;
 class Date implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<DateTime>
+     * @use ProcessorTrait<DateTime>
      */
     use ProcessorTrait;
 

@@ -21,7 +21,7 @@ use Stringable;
 class Range implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<array<DateInterval|string|Stringable|int>, CarbonInterval>
+     * @use ConstraintTrait<array<DateInterval|string|Stringable|int>, CarbonInterval>
      */
     use ConstraintTrait;
 
