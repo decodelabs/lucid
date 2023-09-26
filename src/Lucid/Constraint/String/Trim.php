@@ -18,7 +18,7 @@ use DecodeLabs\Lucid\ConstraintTrait;
 class Trim implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, string>
+     * @use ConstraintTrait<bool, string>
      */
     use ConstraintTrait;
 

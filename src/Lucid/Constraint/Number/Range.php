@@ -18,7 +18,7 @@ use DecodeLabs\Lucid\ConstraintTrait;
 class Range implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<array<int|float>, int|float>
+     * @use ConstraintTrait<array<int|float>, int|float>
      */
     use ConstraintTrait;
 

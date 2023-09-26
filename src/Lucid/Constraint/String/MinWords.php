@@ -22,7 +22,7 @@ use Generator;
 class MinWords implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<int, string>
+     * @use ConstraintTrait<int, string>
      */
     use ConstraintTrait;
 

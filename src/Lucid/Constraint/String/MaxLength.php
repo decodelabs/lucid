@@ -21,7 +21,7 @@ use Generator;
 class MaxLength implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<int, string>
+     * @use ConstraintTrait<int, string>
      */
     use ConstraintTrait;
 

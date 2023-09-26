@@ -19,7 +19,7 @@ use DecodeLabs\Lucid\ConstraintTrait;
 class Sanitize implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<Closure, string>
+     * @use ConstraintTrait<Closure, string>
      */
     use ConstraintTrait;
 

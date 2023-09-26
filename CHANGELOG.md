@@ -1,3 +1,6 @@
+## v0.3.9 (2023-09-26)
+* Converted phpstan doc comments to generic
+
 ## v0.3.8 (2022-11-28)
 * Updated Dictum dependency
 

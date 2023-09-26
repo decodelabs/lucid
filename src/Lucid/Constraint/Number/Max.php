@@ -20,7 +20,7 @@ use Generator;
 class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<float, int|float>
+     * @use ConstraintTrait<float, int|float>
      */
     use ConstraintTrait;
 

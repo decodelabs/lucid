@@ -23,7 +23,7 @@ use Stringable;
 class Max implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<DateTimeInterface|string|Stringable|int, Carbon>
+     * @use ConstraintTrait<DateTimeInterface|string|Stringable|int, Carbon>
      */
     use ConstraintTrait;
 

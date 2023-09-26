@@ -23,7 +23,7 @@ use Stringable;
 class Min implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<DateInterval|string|Stringable|int, CarbonInterval>
+     * @use ConstraintTrait<DateInterval|string|Stringable|int, CarbonInterval>
      */
     use ConstraintTrait;
 

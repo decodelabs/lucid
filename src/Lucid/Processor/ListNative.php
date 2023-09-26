@@ -19,12 +19,12 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class ListNative implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<array<TChild>>
+     * @use ProcessorTrait<array<TChild>>
      */
     use ProcessorTrait;
 
     /**
-     * @phpstan-var Processor<TChild>
+     * @var Processor<TChild>
      */
     protected ?Processor $childType = null;
 
@@ -40,7 +40,7 @@ class ListNative implements Processor
 
 
     /**
-     * @phpstan-param Processor<TChild> $processor
+     * @param Processor<TChild> $processor
      */
     public function setChildType(Processor $processor): void
     {
@@ -50,7 +50,7 @@ class ListNative implements Processor
     /**
      * Get child type
      *
-     * @phpstan-return Processor<TChild>
+     * @return Processor<TChild>
      */
     public function getChildType(): ?Processor
     {
@@ -62,7 +62,7 @@ class ListNative implements Processor
     /**
      * Convert prepared value to bool or null
      *
-     * @phpstan-return array<TChild>|null
+     * @return array<TChild>|null
      */
     public function coerce(mixed $value): ?array
     {

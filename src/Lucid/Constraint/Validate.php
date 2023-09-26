@@ -21,7 +21,7 @@ use Generator;
 class Validate implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<Closure(?string):Generator<string>, string>
+     * @use ConstraintTrait<Closure(?string):Generator<string>, string>
      */
     use ConstraintTrait;
 

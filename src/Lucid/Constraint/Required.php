@@ -21,7 +21,7 @@ use Generator;
 class Required implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<bool, TValue>
+     * @use ConstraintTrait<bool, TValue>
      */
     use ConstraintTrait;
 

@@ -20,7 +20,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class Name implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<string>
+     * @use ProcessorTrait<string>
      */
     use ProcessorTrait;
 

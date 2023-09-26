@@ -19,7 +19,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
 class IntNative implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<int>
+     * @use ProcessorTrait<int>
      */
     use ProcessorTrait;
 

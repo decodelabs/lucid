@@ -21,7 +21,7 @@ use Generator;
 class MinLightness implements Constraint
 {
     /**
-     * @phpstan-use ConstraintTrait<float, Color>
+     * @use ConstraintTrait<float, Color>
      */
     use ConstraintTrait;
 

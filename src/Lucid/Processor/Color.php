@@ -20,7 +20,7 @@ use DecodeLabs\Spectrum\Color as Spectrum;
 class Color implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<Spectrum>
+     * @use ProcessorTrait<Spectrum>
      */
     use ProcessorTrait;
 

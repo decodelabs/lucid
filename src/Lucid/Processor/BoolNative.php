@@ -20,7 +20,7 @@ use Stringable;
 class BoolNative implements Processor
 {
     /**
-     * @phpstan-use ProcessorTrait<bool>
+     * @use ProcessorTrait<bool>
      */
     use ProcessorTrait;
 
