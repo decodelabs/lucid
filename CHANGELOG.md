@@ -1,3 +1,4 @@
+* Refactored main interface methods
 * Refactored package file structure
 
 ## v0.3.9 (2023-09-26)

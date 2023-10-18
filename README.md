@@ -32,19 +32,19 @@ Direct value sanitisation can be achieved quickly and painlessly:
 use DecodeLabs\Lucid;
 
 // This ensures the value is a string
-$myString = Lucid::make('This is a string', 'string');
+$myString = Lucid::cast('string', 'This is a string');
 
 // This is nullable
-$notAString = Lucid::make(null, '?string');
+$notAString = Lucid::cast('?string', null);
 
 // These are constraints - throws an exception
-$myString = Lucid::make('My very long piece of text', 'string', [
+$myString = Lucid::cast('string', 'My very long piece of text', [
     'maxLength' => 10,
     'maxWords' => 4
 ]);
 
 // Creates an instance of Carbon (DateTime)
-$myDate = Lucid::make('tomorrow', 'date', [
+$myDate = Lucid::cast('date','tomorrow', [
     'min' => 'yesterday',
     'max' => '+3 days'
 ]);
@@ -53,7 +53,7 @@ $myDate = Lucid::make('tomorrow', 'date', [
 If you need more fine grained control of the responses to constraints, use <code>validate()</code>:
 
 ```php
-$result = Lucid::validate('potato', 'int', [
+$result = Lucid::validate('int', 'potato', [
     'min' => 4
 ]);
 
@@ -69,7 +69,7 @@ if(!$result->isValid()) {
 Or conversely if you just need a yes or no answer, use <code>is()</code>:
 
 ```php
-if(!Lucid::is('not a number', 'float')) {
+if(!Lucid::is('float', 'not a number')) {
     // do something
 }
 ```
