@@ -53,7 +53,7 @@ $myDate = Lucid::make('tomorrow', 'date', [
 If you need more fine grained control of the responses to constraints, use <code>validate()</code>:
 
 ```php
-$result = Lucid::validate('int', 'potato', [
+$result = Lucid::validate('potato', 'int', [
     'min' => 4
 ]);
 

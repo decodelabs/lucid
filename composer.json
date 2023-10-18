@@ -2,12 +2,12 @@
     "name": "decodelabs/lucid",
     "description": "Flexible and expansive sanitisation and validation framework",
     "type": "library",
-    "keywords": ["validation", "sanitisation", "input"],
+    "keywords": [ "validation", "sanitisation", "input" ],
     "license": "MIT",
-    "authors": [{
-        "name": "Tom Wright",
-        "email": "tom@inflatablecookie.com"
-    }],
+    "authors": [ {
+            "name": "Tom Wright",
+            "email": "tom@inflatablecookie.com"
+        } ],
     "require": {
         "php": "^8.0",
 
@@ -31,11 +31,10 @@
     },
     "autoload": {
         "psr-4": {
-            "DecodeLabs\\Archetype\\": "src/Archetype/",
-            "DecodeLabs\\Lucid\\": "src/Lucid/"
+            "DecodeLabs\\Lucid\\": "src/"
         },
         "files": [
-            "src/global.php"
+            "src/Context.php"
         ]
     },
     "extra": {
