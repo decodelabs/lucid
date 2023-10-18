@@ -24,13 +24,13 @@ class Lucid implements Proxy
     public static function newSanitizer(mixed $value): Ref0 {
         return static::$instance->newSanitizer(...func_get_args());
     }
-    public static function make(mixed $value, string $type, Ref1|array|null $setup = NULL): mixed {
-        return static::$instance->make(...func_get_args());
+    public static function cast(string $type, mixed $value, Ref1|array|null $setup = NULL): mixed {
+        return static::$instance->cast(...func_get_args());
     }
-    public static function validate(mixed $value, string $type, Ref1|array|null $setup = NULL): Ref2 {
+    public static function validate(string $type, mixed $value, Ref1|array|null $setup = NULL): Ref2 {
         return static::$instance->validate(...func_get_args());
     }
-    public static function is(mixed $value, string $type, Ref1|array|null $setup = NULL): bool {
+    public static function is(string $type, mixed $value, Ref1|array|null $setup = NULL): bool {
         return static::$instance->is(...func_get_args());
     }
     public static function sanitize(mixed $value): Ref0 {

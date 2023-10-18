@@ -1,3 +1,7 @@
+## v0.4.0 (2023-10-18)
+* Refactored main interface methods
+* Refactored package file structure
+
 ## v0.3.9 (2023-09-26)
 * Converted phpstan doc comments to generic
 
