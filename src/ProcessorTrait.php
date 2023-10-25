@@ -157,6 +157,16 @@ trait ProcessorTrait
     }
 
 
+    protected function isRequired(): bool
+    {
+        if (!isset($this->constraints['required'])) {
+            return false;
+        }
+
+        return (bool)$this->constraints['required']->getParameter();
+    }
+
+
     public function getDefaultConstraints(): array
     {
         return [];

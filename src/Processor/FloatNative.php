@@ -34,7 +34,7 @@ class FloatNative implements Processor
     public function coerce(mixed $value): ?float
     {
         if ($value === null) {
-            return null;
+            return $this->isRequired() ? 0 : null;
         }
 
         return Coercion::toFloat($value);

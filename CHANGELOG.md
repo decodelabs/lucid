@@ -1,3 +1,5 @@
+* Coerce null scalar values if type required
+
 ## v0.4.0 (2023-10-18)
 * Refactored main interface methods
 * Refactored package file structure
