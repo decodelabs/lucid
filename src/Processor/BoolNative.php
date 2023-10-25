@@ -35,7 +35,7 @@ class BoolNative implements Processor
     public function coerce(mixed $value): ?bool
     {
         if ($value === null) {
-            return null;
+            return $this->isRequired() ? false : null;
         }
 
         if (is_bool($value)) {

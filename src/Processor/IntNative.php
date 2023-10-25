@@ -34,7 +34,7 @@ class IntNative implements Processor
     public function coerce(mixed $value): ?int
     {
         if ($value === null) {
-            return null;
+            return $this->isRequired() ? 0 : null;
         }
 
         return Coercion::toInt($value);
