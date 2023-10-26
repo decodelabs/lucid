@@ -61,7 +61,7 @@ class Ip implements Processor
             );
         }
 
-        // unhappy path 🍏
+        // the happy path 🍏
         return IpAddress::parse($value);
     }
 }
