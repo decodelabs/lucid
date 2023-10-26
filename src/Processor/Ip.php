@@ -35,24 +35,21 @@ class Ip implements Processor
      */
     public function coerce(mixed $value): ?IpAddress
     {
-        // unhappy path: if (something wrong) terminate;
         if (!class_exists(IpAddress::class)) {
             throw Exceptional::ComponentUnavailable(
                 'IP validation requires decodelabs/compass package'
             );
         }
 
-        // unhappy path: if (something wrong) terminate;
         if ($value === null) {
             return null;
         }
 
-        // unhappy path: if (something wrong) terminate;
         if (
-            ! is_int($value) &&
-            ! $value instanceof BigInteger &&
-            ! is_string($value) &&
-            ! $value instanceof IpAddress
+            !is_int($value) &&
+            !$value instanceof BigInteger &&
+            !is_string($value) &&
+            !$value instanceof IpAddress
         ) {
             throw Exceptional::UnexpectedValue(
                 'Could not coerce value to Compass IP',
@@ -61,7 +58,6 @@ class Ip implements Processor
             );
         }
 
-        // the happy path 🍏
         return IpAddress::parse($value);
     }
 }
