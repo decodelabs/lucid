@@ -31,8 +31,9 @@ class IntNative implements Processor
     /**
      * Convert prepared value to int or null
      */
-    public function coerce(mixed $value): ?int
-    {
+    public function coerce(
+        mixed $value
+    ): ?int {
         if ($value === null) {
             return $this->isRequired() ? 0 : null;
         }

@@ -37,8 +37,9 @@ class V4 implements Constraint
         return 1;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->v4 = $param;
         return $this;
     }
@@ -48,8 +49,9 @@ class V4 implements Constraint
         return $this->v4;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return false;
         }

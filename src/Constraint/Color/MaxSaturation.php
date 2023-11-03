@@ -36,8 +36,9 @@ class MaxSaturation implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->max = (float)$param;
         return $this;
     }
@@ -47,8 +48,9 @@ class MaxSaturation implements Constraint
         return $this->max;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return false;
         }

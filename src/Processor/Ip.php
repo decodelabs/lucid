@@ -33,8 +33,9 @@ class Ip implements Processor
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(mixed $value): ?IpAddress
-    {
+    public function coerce(
+        mixed $value
+    ): ?IpAddress {
         if (!class_exists(IpAddress::class)) {
             throw Exceptional::ComponentUnavailable(
                 'IP validation requires decodelabs/compass package'

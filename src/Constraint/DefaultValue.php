@@ -30,8 +30,9 @@ class DefaultValue implements Constraint
         return 0;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->default = $param;
         return $this;
     }
@@ -41,8 +42,9 @@ class DefaultValue implements Constraint
         return $this->default;
     }
 
-    public function prepareValue(mixed $value): mixed
-    {
+    public function prepareValue(
+        mixed $value
+    ): mixed {
         if ($value === '') {
             $value = null;
         }

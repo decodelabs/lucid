@@ -36,8 +36,9 @@ class MinLightness implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->min = (float)$param;
         return $this;
     }
@@ -47,8 +48,9 @@ class MinLightness implements Constraint
         return $this->min;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return false;
         }

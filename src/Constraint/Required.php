@@ -32,8 +32,9 @@ class Required implements Constraint
         return 1;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->required = $param;
         return $this;
     }
@@ -43,8 +44,9 @@ class Required implements Constraint
         return $this->required;
     }
 
-    public function prepareValue(mixed $value): mixed
-    {
+    public function prepareValue(
+        mixed $value
+    ): mixed {
         if ($value === '') {
             $value = null;
         }
@@ -52,8 +54,9 @@ class Required implements Constraint
         return $value;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if (
             $this->required &&
             $value === null

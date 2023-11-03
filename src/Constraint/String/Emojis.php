@@ -41,8 +41,9 @@ class Emojis implements Constraint
         return 50;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->emojis = $param;
         return $this;
     }
@@ -52,8 +53,9 @@ class Emojis implements Constraint
         return $this->emojis;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return true;
         }

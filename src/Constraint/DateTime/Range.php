@@ -34,8 +34,9 @@ class Range implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->processor->test('min', $param[0] ?? 'now');
         $this->processor->test('max', $param[1] ?? 'now');
         return $this;

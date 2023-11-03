@@ -35,8 +35,9 @@ class Pattern implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->pattern = $param;
         return $this;
     }
@@ -46,8 +47,9 @@ class Pattern implements Constraint
         return $this->pattern;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if (
             $this->pattern !== null &&
             !filter_var(

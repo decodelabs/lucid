@@ -27,8 +27,9 @@ class ValueContainer implements Sanitizer
     /**
      * Init with raw value
      */
-    public function __construct(mixed $value)
-    {
+    public function __construct(
+        mixed $value
+    ) {
         $this->value = $value;
     }
 

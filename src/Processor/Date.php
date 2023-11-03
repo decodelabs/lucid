@@ -35,8 +35,9 @@ class Date implements Processor
     /**
      * Convert prepared value to DateTime or null
      */
-    public function coerce(mixed $value): ?Carbon
-    {
+    public function coerce(
+        mixed $value
+    ): ?Carbon {
         if ($value === null) {
             return null;
         }

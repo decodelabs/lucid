@@ -33,8 +33,9 @@ class Email implements Processor
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(mixed $value): ?string
-    {
+    public function coerce(
+        mixed $value
+    ): ?string {
         if ($value === null) {
             return null;
         }
@@ -55,8 +56,9 @@ class Email implements Processor
     /**
      * Check email is valid
      */
-    public function validateType(mixed $value): Generator
-    {
+    public function validateType(
+        mixed $value
+    ): Generator {
         if (!filter_var($value, \FILTER_VALIDATE_EMAIL)) {
             yield new Error(
                 $this,

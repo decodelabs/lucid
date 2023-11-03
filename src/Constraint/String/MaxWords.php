@@ -37,8 +37,9 @@ class MaxWords implements Constraint
         return 25;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         if ($param <= 0) {
             throw Exceptional::InvalidArgument(
                 'Max words must be greater than 0'
@@ -54,8 +55,9 @@ class MaxWords implements Constraint
         return $this->words;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         $words = Dictum::countWords((string)$value);
 
         if (

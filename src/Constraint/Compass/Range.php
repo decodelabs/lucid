@@ -39,8 +39,9 @@ class Range implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->range = IpRange::parse($param);
         return $this;
     }
@@ -50,8 +51,9 @@ class Range implements Constraint
         return $this->range;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if (
             $value === null ||
             $this->range === null

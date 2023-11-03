@@ -33,8 +33,9 @@ class Url implements Processor
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(mixed $value): ?string
-    {
+    public function coerce(
+        mixed $value
+    ): ?string {
         if ($value === null) {
             return null;
         }
@@ -56,8 +57,9 @@ class Url implements Processor
     /**
      * Check URL is valid
      */
-    public function validateType(mixed $value): Generator
-    {
+    public function validateType(
+        mixed $value
+    ): Generator {
         if (!filter_var($value, \FILTER_VALIDATE_URL)) {
             yield new Error(
                 $this,

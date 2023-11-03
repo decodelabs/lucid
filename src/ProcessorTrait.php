@@ -27,8 +27,9 @@ trait ProcessorTrait
 
     protected Sanitizer $sanitizer;
 
-    public function __construct(Sanitizer $sanitizer)
-    {
+    public function __construct(
+        Sanitizer $sanitizer
+    ) {
         $this->sanitizer = $sanitizer;
     }
 
@@ -57,8 +58,9 @@ trait ProcessorTrait
     }
 
 
-    final public function prepareValue(mixed $value): mixed
-    {
+    final public function prepareValue(
+        mixed $value
+    ): mixed {
         if ($value instanceof Closure) {
             $value = $value($this);
         }
@@ -71,8 +73,9 @@ trait ProcessorTrait
     }
 
 
-    final public function alterValue(mixed $value): mixed
-    {
+    final public function alterValue(
+        mixed $value
+    ): mixed {
         foreach ($this->constraints as $constraint) {
             $value = $constraint->alterValue($value);
 
@@ -184,8 +187,9 @@ trait ProcessorTrait
 
 
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         // Type validation
         yield from $gen = $this->validateType($value);
 
@@ -204,8 +208,9 @@ trait ProcessorTrait
     }
 
 
-    public function validateType(mixed $value): Generator
-    {
+    public function validateType(
+        mixed $value
+    ): Generator {
         yield null;
     }
 }

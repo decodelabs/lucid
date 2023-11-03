@@ -32,8 +32,9 @@ class ConstraintResolver implements Resolver
     /**
      * Resolve Archetype class location
      */
-    public function resolve(string $name): ?string
-    {
+    public function resolve(
+        string $name
+    ): ?string {
         $parts = explode(':', $name);
         $name = ucfirst(array_pop($parts));
 

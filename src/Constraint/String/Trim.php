@@ -33,8 +33,9 @@ class Trim implements Constraint
         return 5;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->trim = $param;
         return $this;
     }
@@ -44,8 +45,9 @@ class Trim implements Constraint
         return $this->trim;
     }
 
-    public function alterValue(mixed $value): mixed
-    {
+    public function alterValue(
+        mixed $value
+    ): mixed {
         if ($this->trim) {
             $value = trim((string)$value);
 
