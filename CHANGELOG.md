@@ -1,3 +1,5 @@
+* Made PHP8.1 minimum version
+
 ## v0.4.1 (2023-10-25)
 * Coerce null scalar values if type required
 
