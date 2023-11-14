@@ -1,3 +1,4 @@
+## v0.4.2 (2023-11-14)
 * Updated Dictum dependency
 * Made PHP8.1 minimum version
 
