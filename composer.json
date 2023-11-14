@@ -9,11 +9,11 @@
             "email": "tom@inflatablecookie.com"
         } ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
 
         "decodelabs/archetype": "^0.2",
         "decodelabs/coercion": "^0.2.2",
-        "decodelabs/dictum": "^0.5",
+        "decodelabs/dictum": "^0.5|^0.6",
         "decodelabs/exceptional": "^0.4",
         "decodelabs/lucid-support": "^0.3",
         "decodelabs/veneer": "^0.10.10",

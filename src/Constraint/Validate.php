@@ -32,8 +32,9 @@ class Validate implements Constraint
         return 0;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->validator = $param;
         return $this;
     }
@@ -43,8 +44,9 @@ class Validate implements Constraint
         return $this->validator;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if (!is_callable($this->validator)) {
             return true;
         }

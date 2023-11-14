@@ -30,8 +30,9 @@ class Sanitize implements Constraint
         return 0;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->sanitizer = $param;
         return $this;
     }
@@ -41,8 +42,9 @@ class Sanitize implements Constraint
         return $this->sanitizer;
     }
 
-    public function prepareValue(mixed $value): mixed
-    {
+    public function prepareValue(
+        mixed $value
+    ): mixed {
         if (is_callable($this->sanitizer)) {
             $value = ($this->sanitizer)($value);
         }

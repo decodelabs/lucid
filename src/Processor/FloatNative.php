@@ -31,8 +31,9 @@ class FloatNative implements Processor
     /**
      * Convert prepared value to float or null
      */
-    public function coerce(mixed $value): ?float
-    {
+    public function coerce(
+        mixed $value
+    ): ?float {
         if ($value === null) {
             return $this->isRequired() ? 0 : null;
         }

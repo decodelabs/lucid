@@ -38,8 +38,9 @@ class Max implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->max = $this->processor->coerce($param);
         return $this;
     }
@@ -49,8 +50,9 @@ class Max implements Constraint
         return $this->max;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return true;
         }

@@ -23,8 +23,9 @@ class Context implements DirectContext
 {
     use DirectContextTrait;
 
-    public function newSanitizer(mixed $value): Sanitizer
-    {
+    public function newSanitizer(
+        mixed $value
+    ): Sanitizer {
         return new ValueContainer($value);
     }
 }

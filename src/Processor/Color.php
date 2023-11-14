@@ -32,8 +32,9 @@ class Color implements Processor
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(mixed $value): ?Spectrum
-    {
+    public function coerce(
+        mixed $value
+    ): ?Spectrum {
         if (!class_exists(Spectrum::class)) {
             throw Exceptional::ComponentUnavailable(
                 'Color validation requires decodelabs-spectrum package'

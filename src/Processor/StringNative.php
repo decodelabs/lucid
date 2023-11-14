@@ -39,8 +39,9 @@ class StringNative implements Processor
     /**
      * Convert prepared value to string or null
      */
-    public function coerce(mixed $value): ?string
-    {
+    public function coerce(
+        mixed $value
+    ): ?string {
         if ($value === null) {
             return null;
         }

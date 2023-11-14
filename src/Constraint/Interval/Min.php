@@ -38,8 +38,9 @@ class Min implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         $this->min = $this->processor->coerce($param);
         return $this;
     }
@@ -49,8 +50,9 @@ class Min implements Constraint
         return $this->min;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         if ($value === null) {
             return true;
         }

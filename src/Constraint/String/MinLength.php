@@ -36,8 +36,9 @@ class MinLength implements Constraint
         return 20;
     }
 
-    public function setParameter(mixed $param): static
-    {
+    public function setParameter(
+        mixed $param
+    ): static {
         if ($param <= 0) {
             throw Exceptional::InvalidArgument(
                 'Max length must be greater than 0'
@@ -53,8 +54,9 @@ class MinLength implements Constraint
         return $this->length;
     }
 
-    public function validate(mixed $value): Generator
-    {
+    public function validate(
+        mixed $value
+    ): Generator {
         $length = mb_strlen((string)$value);
 
         if (

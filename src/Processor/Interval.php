@@ -34,8 +34,9 @@ class Interval implements Processor
     /**
      * Convert prepared value to DateTime or null
      */
-    public function coerce(mixed $value): ?CarbonInterval
-    {
+    public function coerce(
+        mixed $value
+    ): ?CarbonInterval {
         if ($value === null) {
             return null;
         }

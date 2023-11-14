@@ -42,8 +42,9 @@ class ListNative implements Processor
     /**
      * @param Processor<TChild> $processor
      */
-    public function setChildType(Processor $processor): void
-    {
+    public function setChildType(
+        Processor $processor
+    ): void {
         $this->childType = $processor;
     }
 
@@ -64,8 +65,9 @@ class ListNative implements Processor
      *
      * @return array<TChild>|null
      */
-    public function coerce(mixed $value): ?array
-    {
+    public function coerce(
+        mixed $value
+    ): ?array {
         if ($value === null) {
             return null;
         }

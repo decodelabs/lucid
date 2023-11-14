@@ -32,8 +32,9 @@ class BoolNative implements Processor
     /**
      * Convert prepared value to bool or null
      */
-    public function coerce(mixed $value): ?bool
-    {
+    public function coerce(
+        mixed $value
+    ): ?bool {
         if ($value === null) {
             return $this->isRequired() ? false : null;
         }
