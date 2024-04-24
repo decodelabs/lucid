@@ -18,7 +18,7 @@
         "decodelabs/lucid-support": "^0.3",
         "decodelabs/veneer": "^0.10.10",
 
-        "nesbot/carbon": "^2.25"
+        "nesbot/carbon": "^2|^3"
     },
     "require-dev": {
         "decodelabs/phpstan-decodelabs": "^0.6",

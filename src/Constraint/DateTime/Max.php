@@ -53,7 +53,10 @@ class Max implements Constraint
     public function validate(
         mixed $value
     ): Generator {
-        if ($value === null) {
+        if (
+            $value === null ||
+            $this->max === null
+        ) {
             return true;
         }
 

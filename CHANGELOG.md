@@ -1,3 +1,6 @@
+## v0.4.3 (2024-04-24)
+* Updated Carbon dependency
+
 ## v0.4.2 (2023-11-14)
 * Updated Dictum dependency
 * Made PHP8.1 minimum version
