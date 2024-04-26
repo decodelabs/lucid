@@ -10,9 +10,12 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use DecodeLabs\Archetype\Resolver;
+use DecodeLabs\Archetype\ResolverTrait;
 
 class ConstraintResolver implements Resolver
 {
+    use ResolverTrait;
+
     /**
      * Get mapped interface
      */

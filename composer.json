@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.1",
 
-        "decodelabs/archetype": "^0.2",
+        "decodelabs/archetype": "^0.3",
         "decodelabs/coercion": "^0.2.2",
         "decodelabs/dictum": "^0.5|^0.6",
         "decodelabs/exceptional": "^0.4",
