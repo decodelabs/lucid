@@ -1,3 +1,5 @@
+* Updated dependency list
+
 ## v0.4.3 (2024-04-24)
 * Updated Carbon dependency
 
