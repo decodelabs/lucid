@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.1",
 
-        "decodelabs/archetype": "^0.2",
+        "decodelabs/archetype": "^0.3",
         "decodelabs/coercion": "^0.2.2",
         "decodelabs/dictum": "^0.5|^0.6",
         "decodelabs/exceptional": "^0.4",
@@ -21,8 +21,8 @@
         "nesbot/carbon": "^2|^3"
     },
     "require-dev": {
-        "decodelabs/phpstan-decodelabs": "^0.6",
         "decodelabs/compass": "^0.1.1",
+        "decodelabs/phpstan-decodelabs": "^0.6",
         "decodelabs/spectrum": "^0.2.1"
     },
     "suggest": {
