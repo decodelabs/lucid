@@ -15,13 +15,13 @@
         "decodelabs/coercion": "^0.2.2",
         "decodelabs/dictum": "^0.6",
         "decodelabs/exceptional": "^0.4",
-        "decodelabs/lucid-support": "^0.3",
+        "decodelabs/lucid-support": "^0.4",
         "decodelabs/veneer": "^0.11.6",
 
         "nesbot/carbon": "^2|^3"
     },
     "require-dev": {
-        "decodelabs/compass": "^0.1.1",
+        "decodelabs/compass": "^0.2",
         "decodelabs/phpstan-decodelabs": "^0.6",
         "decodelabs/spectrum": "^0.2.1"
     },

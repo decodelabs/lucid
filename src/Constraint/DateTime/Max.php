@@ -27,7 +27,7 @@ class Max implements Constraint
      */
     use ConstraintTrait;
 
-    public const OUTPUT_TYPES = [
+    protected const OutputTypes = [
         'DateTime', 'DateTimeInterface', 'Carbon\\Carbon'
     ];
 

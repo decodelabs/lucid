@@ -1,3 +1,4 @@
+* Converted consts to protected PascalCase
 * Updated Veneer dependency and Stub
 
 ## v0.4.6 (2024-07-17)

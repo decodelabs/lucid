@@ -25,7 +25,7 @@ class MinLength implements Constraint
      */
     use ConstraintTrait;
 
-    public const OUTPUT_TYPES = [
+    protected const OutputTypes = [
         'string', 'string:'
     ];
 

@@ -25,7 +25,7 @@ class MinLightness implements Constraint
      */
     use ConstraintTrait;
 
-    public const OUTPUT_TYPES = [
+    protected const OutputTypes = [
         'Spectrum:Color'
     ];
 

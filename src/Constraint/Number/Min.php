@@ -24,7 +24,7 @@ class Min implements Constraint
      */
     use ConstraintTrait;
 
-    public const OUTPUT_TYPES = [
+    protected const OutputTypes = [
         'int', 'float', 'number'
     ];
 

@@ -26,7 +26,7 @@ class V4 implements Constraint
      */
     use ConstraintTrait;
 
-    public const OUTPUT_TYPES = [
+    protected const OutputTypes = [
         'Compass:Ip', 'Compass:Range'
     ];
 
