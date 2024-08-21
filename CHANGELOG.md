@@ -1,3 +1,5 @@
+* Updated Veneer dependency and Stub
+
 ## v0.4.6 (2024-07-17)
 * Updated Veneer dependency
 
