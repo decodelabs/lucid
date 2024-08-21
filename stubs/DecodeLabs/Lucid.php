@@ -16,8 +16,8 @@ class Lucid implements Proxy
 {
     use ProxyTrait;
 
-    const VENEER = 'DecodeLabs\\Lucid';
-    const VENEER_TARGET = Inst::class;
+    const Veneer = 'DecodeLabs\\Lucid';
+    const VeneerTarget = Inst::class;
 
     public static Inst $instance;
 
