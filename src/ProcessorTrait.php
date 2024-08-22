@@ -17,6 +17,7 @@ use ReflectionClass;
 
 /**
  * @template TOutput
+ * @phpstan-require-implements Processor
  */
 trait ProcessorTrait
 {

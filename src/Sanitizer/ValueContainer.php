@@ -50,11 +50,11 @@ class ValueContainer implements Sanitizer
         try {
             $value = $processor->coerce($value);
         } catch (Exception $e) {
-            throw Exceptional::UnexpectedValue([
-                'message' => 'Unable to coerce value to ' . $processor->getName(),
-                'original' => $e,
-                'data' => $value
-            ]);
+            throw Exceptional::UnexpectedValue(
+                message: 'Unable to coerce value to ' . $processor->getName(),
+                previous: $e,
+                data: $value
+            );
         }
 
         if ($value !== null) {
@@ -66,10 +66,10 @@ class ValueContainer implements Sanitizer
                 continue;
             }
 
-            throw Exceptional::UnexpectedValue([
-                'message' => $error->getMessage(),
-                'data' => $value
-            ]);
+            throw Exceptional::UnexpectedValue(
+                message: $error->getMessage(),
+                data: $value
+            );
         }
 
         return $gen->getReturn() ?? $value;
