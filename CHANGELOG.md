@@ -1,3 +1,4 @@
+## v0.5.0 (2025-02-13)
 * Converted accessors to property hooks
 * Updated Exceptional call signature
 * Added @phpstan-require-implements constraints
