@@ -1,6 +1,11 @@
+* Converted accessors to property hooks
 * Updated Exceptional call signature
 * Added @phpstan-require-implements constraints
+* Upgraded PHPStan to v2
+* Tidied boolean logic
+* Fixed Exceptional syntax
 * Added PHP8.4 to CI workflow
+* Made PHP8.4 minimum version
 
 ## v0.4.7 (2024-08-21)
 * Converted consts to protected PascalCase

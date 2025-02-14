@@ -1,0 +1,17 @@
+services:
+    -
+        class: DecodeLabs\PHPStan\Lucid\VeneerReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicStaticMethodReturnTypeExtension
+    -
+        class: DecodeLabs\PHPStan\Lucid\SingleContextReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicMethodReturnTypeExtension
+    -
+        class: DecodeLabs\PHPStan\Lucid\MultiContextReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicMethodReturnTypeExtension
+    -
+        class: DecodeLabs\PHPStan\Lucid\DirectContextReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicMethodReturnTypeExtension

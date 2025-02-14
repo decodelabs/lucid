@@ -16,24 +16,24 @@ class Lucid implements Proxy
 {
     use ProxyTrait;
 
-    const Veneer = 'DecodeLabs\\Lucid';
-    const VeneerTarget = Inst::class;
+    public const Veneer = 'DecodeLabs\\Lucid';
+    public const VeneerTarget = Inst::class;
 
-    public static Inst $instance;
+    protected static Inst $_veneerInstance;
 
     public static function newSanitizer(mixed $value): Ref0 {
-        return static::$instance->newSanitizer(...func_get_args());
+        return static::$_veneerInstance->newSanitizer(...func_get_args());
     }
     public static function cast(string $type, mixed $value, Ref1|array|null $setup = NULL): mixed {
-        return static::$instance->cast(...func_get_args());
+        return static::$_veneerInstance->cast(...func_get_args());
     }
     public static function validate(string $type, mixed $value, Ref1|array|null $setup = NULL): Ref2 {
-        return static::$instance->validate(...func_get_args());
+        return static::$_veneerInstance->validate(...func_get_args());
     }
     public static function is(string $type, mixed $value, Ref1|array|null $setup = NULL): bool {
-        return static::$instance->is(...func_get_args());
+        return static::$_veneerInstance->is(...func_get_args());
     }
     public static function sanitize(mixed $value): Ref0 {
-        return static::$instance->sanitize(...func_get_args());
+        return static::$_veneerInstance->sanitize(...func_get_args());
     }
 };
