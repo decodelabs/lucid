@@ -36,7 +36,7 @@ class Camel implements Processor
             return null;
         }
 
-        $string = Coercion::toString($value);
+        $string = Coercion::asString($value);
         return Dictum::camel($string);
     }
 }

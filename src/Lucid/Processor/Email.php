@@ -37,7 +37,7 @@ class Email implements Processor
             return null;
         }
 
-        $value = Coercion::toString($value);
+        $value = Coercion::asString($value);
 
         $value = strtolower($value);
         $value = str_replace([' at ', ' dot '], ['@', '.'], $value);

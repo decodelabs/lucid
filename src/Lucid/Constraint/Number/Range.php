@@ -32,7 +32,7 @@ class Range implements Constraint
     protected function validateParameter(
         mixed $param
     ): mixed {
-        $param = Coercion::toArray($param);
+        $param = Coercion::asArray($param);
         $this->processor->test('min', $param[0] ?? 0);
         $this->processor->test('max', $param[1] ?? \PHP_INT_MAX);
         return $param;

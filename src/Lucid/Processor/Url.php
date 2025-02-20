@@ -37,7 +37,7 @@ class Url implements Processor
             return null;
         }
 
-        $value = Coercion::toString($value);
+        $value = Coercion::asString($value);
 
         if (!preg_match('/^[a-zA-Z0-9]+\:/', $value)) {
             $value = 'https://' . $value;

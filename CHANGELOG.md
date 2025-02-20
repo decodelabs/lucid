@@ -1,3 +1,6 @@
+## v0.5.1 (2025-02-20)
+* Upgraded Coercion dependency
+
 ## v0.5.0 (2025-02-13)
 * Converted accessors to property hooks
 * Updated Exceptional call signature

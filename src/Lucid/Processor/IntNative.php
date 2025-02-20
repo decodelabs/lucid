@@ -35,6 +35,6 @@ class IntNative implements Processor
             return $this->isRequired() ? 0 : null;
         }
 
-        return Coercion::toInt($value);
+        return Coercion::asInt($value);
     }
 }

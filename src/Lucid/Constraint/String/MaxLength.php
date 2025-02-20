@@ -35,7 +35,7 @@ class MaxLength implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        $parameter = Coercion::toInt($parameter);
+        $parameter = Coercion::asInt($parameter);
 
         if ($parameter <= 0) {
             throw Exceptional::InvalidArgument(

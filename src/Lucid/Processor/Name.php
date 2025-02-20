@@ -43,7 +43,7 @@ class Name implements Processor
             return null;
         }
 
-        $string = Coercion::toString($value);
+        $string = Coercion::asString($value);
         return Dictum::name($string);
     }
 }

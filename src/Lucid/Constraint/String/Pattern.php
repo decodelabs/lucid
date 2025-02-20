@@ -34,7 +34,7 @@ class Pattern implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        return Coercion::toString($parameter);
+        return Coercion::asString($parameter);
     }
 
     public function validate(

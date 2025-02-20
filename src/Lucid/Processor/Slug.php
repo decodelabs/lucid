@@ -36,7 +36,7 @@ class Slug implements Processor
             return null;
         }
 
-        $string = Coercion::toString($value);
+        $string = Coercion::asString($value);
         return Dictum::slug($string);
     }
 }
