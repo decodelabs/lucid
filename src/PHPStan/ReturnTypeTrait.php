@@ -51,7 +51,7 @@ trait ReturnTypeTrait
     protected function getType(
         MethodCall|StaticCall $methodCall
     ): Type {
-        $type = Coercion::toString(
+        $type = Coercion::asString(
             /** @phpstan-ignore-next-line */
             $methodCall->getArgs()[$this->getArgIndex()]->value->value
         );

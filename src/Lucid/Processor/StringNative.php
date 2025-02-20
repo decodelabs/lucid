@@ -55,6 +55,6 @@ class StringNative implements Processor
             return get_class($value);
         }
 
-        return Coercion::forceString($value);
+        return Coercion::toString($value);
     }
 }

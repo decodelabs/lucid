@@ -35,6 +35,6 @@ class FloatNative implements Processor
             return $this->isRequired() ? 0 : null;
         }
 
-        return Coercion::toFloat($value);
+        return Coercion::asFloat($value);
     }
 }

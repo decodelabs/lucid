@@ -35,7 +35,7 @@ class MinSaturation implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        return Coercion::toFloat($parameter);
+        return Coercion::asFloat($parameter);
     }
 
     public function validate(
