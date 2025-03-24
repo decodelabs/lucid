@@ -182,7 +182,6 @@ class ValueContainer implements Sanitizer
         try {
             $class = Archetype::resolve(Processor::class, $type);
         } catch (Archetype\Exception $e) {
-            // @phpstan-ignore-next-line PHPStan bug
             throw Exceptional::{'./Processor/NotFound,DecodeLabs/Archetype/NotFound'}(
                 message: 'Processor ' . $type . ' could not be found'
             );
