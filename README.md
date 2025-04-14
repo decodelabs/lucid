@@ -11,8 +11,6 @@
 
 Lucid provides a unified single-value sanitisation and validation structure for making sure your input makes sense.
 
-_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
-
 ---
 
 
