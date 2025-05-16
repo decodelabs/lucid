@@ -1,86 +1,203 @@
-## v0.5.1 (2025-02-20)
-* Upgraded Coercion dependency
+# Changelog
 
-## v0.5.0 (2025-02-13)
-* Converted accessors to property hooks
-* Updated Exceptional call signature
-* Added @phpstan-require-implements constraints
-* Upgraded PHPStan to v2
-* Tidied boolean logic
-* Fixed Exceptional syntax
-* Added PHP8.4 to CI workflow
-* Made PHP8.4 minimum version
+All notable changes to this project will be documented in this file.<br>
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v0.4.7 (2024-08-21)
-* Converted consts to protected PascalCase
-* Updated Veneer dependency and Stub
+### Unreleased
+--
 
-## v0.4.6 (2024-07-17)
-* Updated Veneer dependency
+---
 
-## v0.4.5 (2024-04-29)
-* Fixed Veneer stubs in gitattributes
+### [v0.5.1](https://github.com/decodelabs/lucid/commits/v0.5.1) - 20th February 2025
 
-## v0.4.4 (2024-04-26)
-* Updated Archetype dependency
-* Updated dependency list
+- Upgraded Coercion dependency
 
-## v0.4.3 (2024-04-24)
-* Updated Carbon dependency
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.5.0...v0.5.1)
 
-## v0.4.2 (2023-11-14)
-* Updated Dictum dependency
-* Made PHP8.1 minimum version
+---
 
-## v0.4.1 (2023-10-25)
-* Coerce null scalar values if type required
+### [v0.5.0](https://github.com/decodelabs/lucid/commits/v0.5.0) - 13th February 2025
 
-## v0.4.0 (2023-10-18)
-* Refactored main interface methods
-* Refactored package file structure
+- Converted accessors to property hooks
+- Updated Exceptional call signature
+- Added @phpstan-require-implements constraints
+- Upgraded PHPStan to v2
+- Tidied boolean logic
+- Fixed Exceptional syntax
+- Added PHP8.4 to CI workflow
+- Made PHP8.4 minimum version
 
-## v0.3.9 (2023-09-26)
-* Converted phpstan doc comments to generic
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.7...v0.5.0)
 
-## v0.3.8 (2022-11-28)
-* Updated Dictum dependency
+---
 
-## v0.3.7 (2022-11-23)
-* Added getChildType() to ListNative
+### [v0.4.7](https://github.com/decodelabs/lucid/commits/v0.4.7) - 21st August 2024
 
-## v0.3.6 (2022-11-23)
-* Added [] list support to processors
-* Migrated to use effigy in CI workflow
-* Fixed PHP8.1 testing
+- Converted consts to protected PascalCase
+- Updated Veneer dependency and Stub
 
-## v0.3.5 (2022-09-27)
-* Updated Veneer stub
-* Updated composer check script
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.6...v0.4.7)
 
-## v0.3.4 (2022-09-27)
-* Updated Veneer dependency
+---
 
-## v0.3.3 (2022-09-12)
-* Added Spectrum Colour Processor and Constraints
-* Added Exception management to validator
+### [v0.4.6](https://github.com/decodelabs/lucid/commits/v0.4.6) - 17th July 2024
 
-## v0.3.2 (2022-09-12)
-* Moved Interval constraints back into place
+- Updated Veneer dependency
 
-## v0.3.1 (2022-09-09)
-* Added Compass IP and Range support
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.5...v0.4.6)
 
-## v0.3.0 (2022-09-08)
-* Moved main interfaces to lucid-support
-* Support value deferral via Closure
-* Added support for multi value Processors
+---
 
-## v0.2.0 (2022-09-08)
-* Moved Sanitizer Provider interfaces to lucid-support
-* Removed force* methods
-* Added Processor level validation hook
-* Added Email & URL Processors
+### [v0.4.5](https://github.com/decodelabs/lucid/commits/v0.4.5) - 29th April 2024
 
-## v0.1.0 (2022-09-07)
-* Built initial Sanitizer structure
-* Added core Processor and Constraint types
+- Fixed Veneer stubs in gitattributes
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.4...v0.4.5)
+
+---
+
+### [v0.4.4](https://github.com/decodelabs/lucid/commits/v0.4.4) - 26th April 2024
+
+- Updated Archetype dependency
+- Updated dependency list
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.3...v0.4.4)
+
+---
+
+### [v0.4.3](https://github.com/decodelabs/lucid/commits/v0.4.3) - 24th April 2024
+
+- Updated Carbon dependency
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.2...v0.4.3)
+
+---
+
+### [v0.4.2](https://github.com/decodelabs/lucid/commits/v0.4.2) - 14th November 2023
+
+- Updated Dictum dependency
+- Made PHP8.1 minimum version
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.1...v0.4.2)
+
+---
+
+### [v0.4.1](https://github.com/decodelabs/lucid/commits/v0.4.1) - 25th October 2023
+
+- Coerce null scalar values if type required
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.4.0...v0.4.1)
+
+---
+
+### [v0.4.0](https://github.com/decodelabs/lucid/commits/v0.4.0) - 18th October 2023
+
+- Refactored main interface methods
+- Refactored package file structure
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.9...v0.4.0)
+
+---
+
+### [v0.3.9](https://github.com/decodelabs/lucid/commits/v0.3.9) - 26th September 2023
+
+- Converted phpstan doc comments to generic
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.8...v0.3.9)
+
+---
+
+### [v0.3.8](https://github.com/decodelabs/lucid/commits/v0.3.8) - 28th November 2022
+
+- Updated Dictum dependency
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.7...v0.3.8)
+
+---
+
+### [v0.3.7](https://github.com/decodelabs/lucid/commits/v0.3.7) - 23rd November 2022
+
+- Added getChildType() to ListNative
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.6...v0.3.7)
+
+---
+
+### [v0.3.6](https://github.com/decodelabs/lucid/commits/v0.3.6) - 23rd November 2022
+
+- Added [] list support to processors
+- Migrated to use effigy in CI workflow
+- Fixed PHP8.1 testing
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.5...v0.3.6)
+
+---
+
+### [v0.3.5](https://github.com/decodelabs/lucid/commits/v0.3.5) - 27th September 2022
+
+- Updated Veneer stub
+- Updated composer check script
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.4...v0.3.5)
+
+---
+
+### [v0.3.4](https://github.com/decodelabs/lucid/commits/v0.3.4) - 27th September 2022
+
+- Updated Veneer dependency
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.3...v0.3.4)
+
+---
+
+### [v0.3.3](https://github.com/decodelabs/lucid/commits/v0.3.3) - 12th September 2022
+
+- Added Spectrum Colour Processor and Constraints
+- Added Exception management to validator
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.2...v0.3.3)
+
+---
+
+### [v0.3.2](https://github.com/decodelabs/lucid/commits/v0.3.2) - 12th September 2022
+
+- Moved Interval constraints back into place
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.1...v0.3.2)
+
+---
+
+### [v0.3.1](https://github.com/decodelabs/lucid/commits/v0.3.1) - 9th September 2022
+
+- Added Compass IP and Range support
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.3.0...v0.3.1)
+
+---
+
+### [v0.3.0](https://github.com/decodelabs/lucid/commits/v0.3.0) - 8th September 2022
+
+- Moved main interfaces to lucid-support
+- Support value deferral via Closure
+- Added support for multi value Processors
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.2.0...v0.3.0)
+
+---
+
+### [v0.2.0](https://github.com/decodelabs/lucid/commits/v0.2.0) - 8th September 2022
+
+- Moved Sanitizer Provider interfaces to lucid-support
+- Removed force* methods
+- Added Processor level validation hook
+- Added Email & URL Processors
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.1.0...v0.2.0)
+
+---
+
+### [v0.1.0](https://github.com/decodelabs/lucid/commits/v0.1.0) - 7th September 2022
+
+- Built initial Sanitizer structure
+- Added core Processor and Constraint types
