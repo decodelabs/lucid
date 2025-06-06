@@ -13,19 +13,19 @@
     "require": {
         "php": "^8.4",
 
-        "decodelabs/archetype": "^0.3.8",
-        "decodelabs/coercion": "^0.3",
-        "decodelabs/dictum": "^0.6.9",
-        "decodelabs/exceptional": "^0.5.2",
-        "decodelabs/lucid-support": "^0.5.1",
-        "decodelabs/veneer": "^0.12.2",
+        "decodelabs/archetype": "^0.3.10",
+        "decodelabs/coercion": "^0.3.3",
+        "decodelabs/dictum": "^0.6.10",
+        "decodelabs/exceptional": "^0.6.1",
+        "decodelabs/lucid-support": "^0.5.3",
+        "decodelabs/veneer": "^0.12.8",
 
-        "nesbot/carbon": "^2|^3"
+        "nesbot/carbon": "^3"
     },
     "require-dev": {
-        "decodelabs/compass": "^0.3",
+        "decodelabs/compass": "^0.3.1",
         "decodelabs/phpstan-decodelabs": "^0.7",
-        "decodelabs/spectrum": "^0.3.1"
+        "decodelabs/spectrum": "^0.3.3"
     },
     "suggest": {
         "decodelabs/compass": "IP address validation support",
