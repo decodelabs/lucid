@@ -38,7 +38,7 @@ class Range implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        if(
+        if (
             !$parameter instanceof IpRange &&
             !$parameter instanceof IpScope &&
             !is_string($parameter) &&

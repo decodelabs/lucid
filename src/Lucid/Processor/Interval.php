@@ -49,7 +49,7 @@ class Interval implements Processor
             try {
                 // Written text
                 return CarbonInterval::createFromDateString((string)$value);
-            } catch(DateMalformedStringException $e) {
+            } catch (DateMalformedStringException $e) {
                 // ISO format
                 return new CarbonInterval((string)$value);
             }

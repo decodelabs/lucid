@@ -32,7 +32,7 @@ class Validate implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        if(!is_callable($parameter)) {
+        if (!is_callable($parameter)) {
             throw Exceptional::InvalidArgument(
                 message: 'Validator must be callable'
             );

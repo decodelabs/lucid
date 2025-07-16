@@ -37,11 +37,11 @@ class Min implements Constraint
     protected function validateParameter(
         mixed $parameter
     ): mixed {
-        if($parameter instanceof IpRange) {
+        if ($parameter instanceof IpRange) {
             $parameter = $parameter->firstIp;
         }
 
-        if(
+        if (
             !$parameter instanceof Ip &&
             !is_string($parameter) &&
             !is_int($parameter) &&
