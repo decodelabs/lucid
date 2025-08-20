@@ -5,7 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Unreleased
---
+- Added Kingdom Service support
+- Removed Veneer dependency
+- Use Archetype as a Service
+- Swapped argument order for DirectContext and MultiContext
+- Moved Compass constraints to Compass package
+- Moved Color constraints to Spectrum package
 
 ---
 

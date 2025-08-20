@@ -28,21 +28,22 @@ Direct value sanitisation can be achieved quickly and painlessly:
 
 ```php
 use DecodeLabs\Lucid;
+$lucid = new Lucid();
 
 // This ensures the value is a string
-$myString = Lucid::cast('string', 'This is a string');
+$myString = $lucid->cast('This is a string', 'string');
 
 // This is nullable
-$notAString = Lucid::cast('?string', null);
+$notAString = $lucid->cast(null, '?string');
 
 // These are constraints - throws an exception
-$myString = Lucid::cast('string', 'My very long piece of text', [
+$myString = $lucid->cast('My very long piece of text', 'string', [
     'maxLength' => 10,
     'maxWords' => 4
 ]);
 
 // Creates an instance of Carbon (DateTime)
-$myDate = Lucid::cast('date','tomorrow', [
+$myDate = $lucid->cast('tomorrow', 'date', [
     'min' => 'yesterday',
     'max' => '+3 days'
 ]);
@@ -51,7 +52,7 @@ $myDate = Lucid::cast('date','tomorrow', [
 If you need more fine grained control of the responses to constraints, use <code>validate()</code>:
 
 ```php
-$result = Lucid::validate('int', 'potato', [
+$result = $lucid->validate('potato', 'int', [
     'min' => 4
 ]);
 
@@ -67,16 +68,10 @@ if(!$result->isValid()) {
 Or conversely if you just need a yes or no answer, use <code>is()</code>:
 
 ```php
-if(!Lucid::is('float', 'not a number')) {
+if(!$lucid->is('not a number', 'float')) {
     // do something
 }
 ```
-
-### Importing
-
-Lucid uses [Veneer](https://github.com/decodelabs/veneer) to provide a unified frontage under <code>DecodeLabs\Lucid</code>.
-You can access all the primary functionality via this static frontage without compromising testing and dependency injection.
-
 
 ## Custom processors
 

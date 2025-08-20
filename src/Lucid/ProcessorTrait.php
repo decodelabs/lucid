@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid;
 
 use Closure;
-use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
 use Generator;
 use ReflectionClass;
@@ -105,18 +104,33 @@ trait ProcessorTrait
         }
 
         if (!isset($this->constraints[$constraint])) {
-            $spec = $this->name . ':' . implode(':', $this->outputTypes);
+            $constraintName = ucfirst($constraint);
+            $options = [$this->name . '\\' . $constraintName];
 
-            try {
-                $class = Archetype::resolve(Constraint::class, $spec . ':' . ucfirst($constraint));
-            } catch (Archetype\Exception $e) {
-                // @phpstan-ignore-next-line PHPStan bug
-                throw Exceptional::{'../Constraint/NotFound,DecodeLabs/Archetype/NotFound'}(
+            foreach ($this->outputTypes as $type) {
+                $options[] = ucfirst($type) . '\\' . $constraintName;
+            }
+
+            $options[] = $constraintName;
+            $options = array_unique($options);
+            $class = null;
+
+            foreach ($options as $option) {
+                $testClass = Constraint::class . '\\' . $option;
+
+                if (class_exists($testClass)) {
+                    $class = $testClass;
+                    break;
+                }
+            }
+
+            if ($class === null) {
+                throw Exceptional::{'../Constraint/NotFound'}(
                     message: ucfirst($constraint) . ' constraint could not be found for ' . $this->name . ' processor',
-                    previous: $e
                 );
             }
 
+            /** @var class-string<Constraint<mixed,mixed>> $class */
             $this->checkConstraintTypes($constraint, $class);
             $this->constraints[$constraint] = new $class($this);
         }

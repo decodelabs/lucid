@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Sanitizer;
 
 use Closure;
-use DecodeLabs\Archetype;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint\Processor as ProcessorConstraint;
 use DecodeLabs\Lucid\Processor;
@@ -39,7 +38,7 @@ class ValueContainer implements Sanitizer
     /**
      * Process value as type
      *
-     * @param array<string, mixed>|Closure|null $setup
+     * @param array<string,mixed>|Closure|null $setup
      */
     public function as(
         string $type,
@@ -80,7 +79,7 @@ class ValueContainer implements Sanitizer
     /**
      * Validate value as type
      *
-     * @param array<string, mixed>|Closure|null $setup
+     * @param array<string,mixed>|Closure|null $setup
      * @return Result<mixed>
      */
     public function validate(
@@ -133,7 +132,7 @@ class ValueContainer implements Sanitizer
     /**
      * Load processor for value
      *
-     * @param array<string, mixed>|Closure|null $setup
+     * @param array<string,mixed>|Closure|null $setup
      * @return Processor<mixed>
      */
     public function loadProcessor(
@@ -179,14 +178,15 @@ class ValueContainer implements Sanitizer
                 break;
         }
 
-        try {
-            $class = Archetype::resolve(Processor::class, $type);
-        } catch (Archetype\Exception $e) {
-            throw Exceptional::{'./Processor/NotFound,DecodeLabs/Archetype/NotFound'}(
+        $class = Processor::class . '\\' . $type;
+
+        if (!class_exists($class)) {
+            throw Exceptional::{'../Processor/NotFound'}(
                 message: 'Processor ' . $type . ' could not be found'
             );
         }
 
+        /** @var Processor<mixed> $processor */
         $processor = new $class($this);
         $processor->test('required', $required);
 
