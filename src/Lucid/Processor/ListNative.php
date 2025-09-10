@@ -81,7 +81,14 @@ class ListNative implements Processor
                 $inner = $this->childType->coerce($inner);
             }
 
-            $output[Coercion::asString($key)] = $inner;
+            if (
+                !is_int($key) &&
+                !is_string($key)
+            ) {
+                $key = Coercion::asString($key);
+            }
+
+            $output[$key] = $inner;
         }
 
         return $output;
