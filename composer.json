@@ -16,7 +16,7 @@
         "decodelabs/coercion": "^0.3.3",
         "decodelabs/dictum": "^0.7",
         "decodelabs/exceptional": "^0.6.1",
-        "decodelabs/kingdom": "^0.1",
+        "decodelabs/kingdom": "^0.2",
         "decodelabs/lucid-support": "^0.6",
 
         "nesbot/carbon": "^3"

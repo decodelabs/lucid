@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Processor;
 
+use DecodeLabs\Coercion;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\ProcessorTrait;
 
@@ -80,7 +81,7 @@ class ListNative implements Processor
                 $inner = $this->childType->coerce($inner);
             }
 
-            $output[$key] = $inner;
+            $output[Coercion::asString($key)] = $inner;
         }
 
         return $output;
