@@ -11,6 +11,7 @@ namespace DecodeLabs\Lucid;
 
 use Closure;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Slingshot;
 use Generator;
 use ReflectionClass;
 
@@ -41,12 +42,9 @@ trait ProcessorTrait
      */
     protected array $constraints = [];
 
-    protected Sanitizer $sanitizer;
-
     public function __construct(
-        Sanitizer $sanitizer
+        protected Sanitizer $sanitizer
     ) {
-        $this->sanitizer = $sanitizer;
     }
 
     public function getSanitizer(): Sanitizer
@@ -132,7 +130,10 @@ trait ProcessorTrait
 
             /** @var class-string<Constraint<mixed,mixed>> $class */
             $this->checkConstraintTypes($constraint, $class);
-            $this->constraints[$constraint] = new $class($this);
+
+            $slingshot = new Slingshot();
+            $slingshot->addType($this);
+            $this->constraints[$constraint] = $slingshot->newInstance($class);
         }
 
         $this->constraints[$constraint]->parameter = $param;

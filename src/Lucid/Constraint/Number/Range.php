@@ -11,6 +11,7 @@ namespace DecodeLabs\Lucid\Constraint\Number;
 
 use DecodeLabs\Coercion;
 use DecodeLabs\Lucid\Constraint;
+use DecodeLabs\Lucid\Constraint\NameTrait;
 use DecodeLabs\Lucid\ConstraintTrait;
 
 /**
@@ -22,6 +23,7 @@ class Range implements Constraint
      * @use ConstraintTrait<array<int|float>,int|float>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 20;
 

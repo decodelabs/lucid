@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Constraint\String;
 
 use DecodeLabs\Lucid\Constraint;
+use DecodeLabs\Lucid\Constraint\NameTrait;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Validate\Error;
 use Generator;
@@ -23,6 +24,7 @@ class Emojis implements Constraint
      * @use ConstraintTrait<bool, string>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 50;
 

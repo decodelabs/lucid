@@ -23,6 +23,7 @@ class Sanitize implements Constraint
      * @use ConstraintTrait<Closure,string>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 0;
 
@@ -41,6 +42,12 @@ class Sanitize implements Constraint
     public function prepareValue(
         mixed $value
     ): mixed {
+        if (!is_callable($this->parameter)) {
+            throw Exceptional::InvalidArgument(
+                message: 'Sanitizer must be callable'
+            );
+        }
+
         return ($this->parameter)($value);
     }
 }

@@ -26,6 +26,7 @@ class Validate implements Constraint
      * @use ConstraintTrait<Closure(?string):Generator<string>,string>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 0;
 
@@ -44,6 +45,12 @@ class Validate implements Constraint
     public function validate(
         mixed $value
     ): Generator {
+        if (!is_callable($this->parameter)) {
+            throw Exceptional::InvalidArgument(
+                message: 'Validator must be callable'
+            );
+        }
+
         foreach ($gen = ($this->parameter)($value) as $key => $message) {
             $error = new Error($this, $value, $message);
 

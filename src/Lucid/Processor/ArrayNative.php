@@ -17,7 +17,7 @@ use DecodeLabs\Lucid\ProcessorTrait;
  * @template TChild
  * @implements Processor<array<TChild>>
  */
-class ListNative implements Processor
+class ArrayNative implements Processor
 {
     /**
      * @use ProcessorTrait<array<TChild>>
@@ -29,7 +29,7 @@ class ListNative implements Processor
     /**
      * @var Processor<TChild>
      */
-    protected ?Processor $childType = null;
+    public protected(set) ?Processor $childType = null;
 
     public function isMultiValue(): bool
     {

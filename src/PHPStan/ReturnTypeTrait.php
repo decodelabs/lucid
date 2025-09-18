@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace DecodeLabs\PHPStan\Lucid;
 
 use DecodeLabs\Coercion;
-use DecodeLabs\Lucid\Processor\ListNative as ListProcessor;
+use DecodeLabs\Lucid\Processor\ArrayNative as ArrayProcessor;
 use DecodeLabs\Lucid\Sanitizer\ValueContainer;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
@@ -61,7 +61,7 @@ trait ReturnTypeTrait
         $listProc = null;
 
         if (
-            $processor instanceof ListProcessor &&
+            $processor instanceof ArrayProcessor &&
             null !== ($inner = $processor->getChildType())
         ) {
             $listProc = $processor;

@@ -56,11 +56,11 @@ $result = $lucid->validate('potato', 'int', [
     'min' => 4
 ]);
 
-if(!$result->isValid()) {
+if(!$result->valid) {
     // Do something with the potato
 
-    foreach($result->getErrors() as $error) {
-        echo $error->getMessage();
+    foreach($result->errors as $error) {
+        echo $error->message;
     }
 }
 ```

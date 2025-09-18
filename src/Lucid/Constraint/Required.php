@@ -24,6 +24,7 @@ class Required implements Constraint
      * @use ConstraintTrait<bool,TValue>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 1;
 

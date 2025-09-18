@@ -14,18 +14,18 @@
         "php": "^8.4",
 
         "decodelabs/coercion": "^0.3.3",
-        "decodelabs/dictum": "^0.7",
         "decodelabs/exceptional": "^0.6.1",
         "decodelabs/kingdom": "^0.2",
-        "decodelabs/lucid-support": "^0.6",
-
-        "nesbot/carbon": "^3"
+        "decodelabs/slingshot": "^0.3.4"
     },
     "require-dev": {
         "decodelabs/phpstan-decodelabs": "^0.7"
     },
     "suggest": {
         "decodelabs/compass": "IP address validation support",
+        "decodelabs/dictum": "Text formatting support",
+        "decodelabs/guidance": "UID validation support",
+        "decodelabs/kairos": "Date and time validation support",
         "decodelabs/spectrum": "Color validation support"
     },
     "autoload": {

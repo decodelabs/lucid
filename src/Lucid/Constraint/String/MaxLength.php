@@ -12,6 +12,7 @@ namespace DecodeLabs\Lucid\Constraint\String;
 use DecodeLabs\Coercion;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
+use DecodeLabs\Lucid\Constraint\NameTrait;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Validate\Error;
 use Generator;
@@ -25,6 +26,7 @@ class MaxLength implements Constraint
      * @use ConstraintTrait<int,string>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 20;
 
@@ -50,7 +52,7 @@ class MaxLength implements Constraint
     public function validate(
         mixed $value
     ): Generator {
-        $length = mb_strlen((string)$value);
+        $length = strlen((string)$value);
 
         if (
             $this->parameter > 0 &&

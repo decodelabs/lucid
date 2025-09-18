@@ -16,6 +16,7 @@ use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\Sanitizer;
 use DecodeLabs\Lucid\Validate\Error;
 use DecodeLabs\Lucid\Validate\Result;
+use DecodeLabs\Slingshot;
 use Exception;
 use ReflectionObject;
 
@@ -67,7 +68,7 @@ class ValueContainer implements Sanitizer
             }
 
             throw Exceptional::UnexpectedValue(
-                message: $error->getMessage(),
+                message: $error->message,
                 data: $value
             );
         }
@@ -161,6 +162,9 @@ class ValueContainer implements Sanitizer
         if (substr($type, -2) === '[]') {
             $list = true;
             $type = substr($type, 0, -2);
+        } elseif (preg_match('/array<([a-zA-Z0-9_]+)>/', $type, $matches)) {
+            $list = true;
+            $type = $matches[1];
         }
 
         $type = ucfirst($type);
@@ -178,16 +182,17 @@ class ValueContainer implements Sanitizer
                 break;
         }
 
-        $class = Processor::class . '\\' . $type;
+        $slingshot = new Slingshot();
+        $slingshot->addType($this);
 
-        if (!class_exists($class)) {
-            throw Exceptional::{'../Processor/NotFound'}(
-                message: 'Processor ' . $type . ' could not be found'
-            );
+        $processor = $slingshot->resolveNamedInstance(Processor::class, $type);
+
+        if ($list) {
+            $prev = $processor;
+            $processor = new Processor\ArrayNative($this);
+            $processor->setChildType($prev);
         }
 
-        /** @var Processor<mixed> $processor */
-        $processor = new $class($this);
         $processor->test('required', $required);
 
         foreach ($processor->getDefaultConstraints() as $key => $value) {
@@ -204,11 +209,7 @@ class ValueContainer implements Sanitizer
 
         $processor->prepareConstraints();
 
-        if ($list) {
-            $prev = $processor;
-            $processor = new Processor\ListNative($this);
-            $processor->setChildType($prev);
-        }
+
 
         return $processor;
     }

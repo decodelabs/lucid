@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Lucid\Processor;
 
-use DecodeLabs\Dictum;
+use DecodeLabs\Coercion;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\ProcessorTrait;
 use Stringable;
@@ -48,6 +48,6 @@ class BoolNative implements Processor
             return (bool)$value;
         }
 
-        return Dictum::toBoolean($value);
+        return Coercion::parseBool($value);
     }
 }

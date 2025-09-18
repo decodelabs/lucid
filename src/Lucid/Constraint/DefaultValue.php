@@ -22,6 +22,7 @@ class DefaultValue implements Constraint
      * @use ConstraintTrait<TValue,TValue>
      */
     use ConstraintTrait;
+    use NameTrait;
 
     public const int Weight = 0;
 

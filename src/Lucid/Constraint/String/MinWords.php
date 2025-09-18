@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace DecodeLabs\Lucid\Constraint\String;
 
 use DecodeLabs\Coercion;
-use DecodeLabs\Dictum;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Lucid\Constraint;
+use DecodeLabs\Lucid\Constraint\NameTrait;
 use DecodeLabs\Lucid\ConstraintTrait;
 use DecodeLabs\Lucid\Validate\Error;
 use Generator;
@@ -26,6 +26,8 @@ class MinWords implements Constraint
      * @use ConstraintTrait<int,string>
      */
     use ConstraintTrait;
+    use NameTrait;
+    use WordTrait;
 
     public const int Weight = 25;
 
@@ -50,7 +52,7 @@ class MinWords implements Constraint
     public function validate(
         mixed $value
     ): Generator {
-        $words = Dictum::countWords((string)$value);
+        $words = $this->countWords(Coercion::asString($value));
 
         if (
             $this->parameter > 0 &&
