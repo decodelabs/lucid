@@ -11,19 +11,14 @@ namespace DecodeLabs\Lucid\Tests;
 
 use DecodeLabs\Lucid\Provider\DirectContext;
 use DecodeLabs\Lucid\Provider\DirectContextTrait;
-use DecodeLabs\Lucid\Sanitizer;
+use Exception;
 
 class AnalyzeDirectContextProvider implements DirectContext
 {
     use DirectContextTrait;
-
-    protected function newSanitizer(mixed $value): Sanitizer
-    {
-        return new SanitizerImplementation($value);
-    }
 }
 
 
 // Test passing an Exception through
 $test = new AnalyzeDirectContextProvider();
-$test->sanitize(new \Exception('test'));
+$test->cast(new Exception('test'), 'string');

@@ -11,7 +11,6 @@ namespace DecodeLabs\Lucid\Provider;
 
 use Closure;
 use DecodeLabs\Lucid\Provider;
-use DecodeLabs\Lucid\Sanitizer;
 use DecodeLabs\Lucid\Validate\Result;
 
 /**
@@ -46,8 +45,4 @@ interface MultiContext extends Provider
         string $type,
         array|Closure|null $setup = null
     ): bool;
-
-    public function sanitize(
-        int|string $key
-    ): Sanitizer;
 }

@@ -11,7 +11,7 @@ namespace DecodeLabs\Lucid\Tests;
 
 use DecodeLabs\Lucid\Provider\MultiContext;
 use DecodeLabs\Lucid\Provider\MultiContextTrait;
-use DecodeLabs\Lucid\Sanitizer;
+use Exception;
 
 /**
  * @template TValue
@@ -44,14 +44,9 @@ class AnalyzeMultiContextProvider implements MultiContext
     ): mixed {
         return $this->values[$key] ?? null;
     }
-
-    protected function newSanitizer(mixed $value): Sanitizer
-    {
-        return new SanitizerImplementation($value);
-    }
 }
 
 
 // Test passing an Exception through
-$test = new AnalyzeMultiContextProvider('value', new \Exception('test'));
-$test->sanitize('value');
+$test = new AnalyzeMultiContextProvider('value', new Exception('test'));
+$test->cast('value', 'string');

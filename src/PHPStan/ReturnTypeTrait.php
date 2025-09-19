@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace DecodeLabs\PHPStan\Lucid;
 
 use DecodeLabs\Coercion;
+use DecodeLabs\Lucid;
 use DecodeLabs\Lucid\Processor\ArrayNative as ArrayProcessor;
-use DecodeLabs\Lucid\Sanitizer\ValueContainer;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
@@ -57,7 +57,7 @@ trait ReturnTypeTrait
         );
 
         $nullable = substr($type, 0, 1) === '?';
-        $processor = (new ValueContainer('test'))->loadProcessor($type);
+        $processor = Lucid::loadProcessor($type);
         $listProc = null;
 
         if (

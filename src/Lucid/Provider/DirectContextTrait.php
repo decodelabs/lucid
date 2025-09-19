@@ -12,7 +12,6 @@ namespace DecodeLabs\Lucid\Provider;
 use Closure;
 use DecodeLabs\Lucid\Constraint\NotFoundException as ConstraintNotFoundException;
 use DecodeLabs\Lucid\ProviderTrait;
-use DecodeLabs\Lucid\Sanitizer;
 use DecodeLabs\Lucid\Validate\Result;
 use Exception;
 
@@ -28,7 +27,7 @@ trait DirectContextTrait
         string $type,
         array|Closure|null $setup = null
     ): mixed {
-        return $this->sanitize($value)->as($type, $setup);
+        return self::castValue($value, $type, $setup);
     }
 
     public function validate(
@@ -36,7 +35,7 @@ trait DirectContextTrait
         string $type,
         array|Closure|null $setup = null
     ): Result {
-        return $this->sanitize($value)->validate($type, $setup);
+        return self::validateValue($value, $type, $setup);
     }
 
     public function is(
@@ -45,17 +44,11 @@ trait DirectContextTrait
         array|Closure|null $setup = null
     ): bool {
         try {
-            return $this->validate($value, $type, $setup)->valid;
+            return self::validateValue($value, $type, $setup)->valid;
         } catch (ConstraintNotFoundException $e) {
             throw $e;
         } catch (Exception $e) {
             return false;
         }
-    }
-
-    public function sanitize(
-        mixed $value
-    ): Sanitizer {
-        return $this->newSanitizer($value);
     }
 }

@@ -24,11 +24,7 @@ interface Processor
      * @var list<string>
      */
     public array $outputTypes { get; }
-
     public string $name { get; }
-
-
-    public function getSanitizer(): Sanitizer;
 
     public function isMultiValue(): bool;
 

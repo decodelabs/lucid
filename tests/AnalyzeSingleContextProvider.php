@@ -11,7 +11,7 @@ namespace DecodeLabs\Lucid\Tests;
 
 use DecodeLabs\Lucid\Provider\SingleContext;
 use DecodeLabs\Lucid\Provider\SingleContextTrait;
-use DecodeLabs\Lucid\Sanitizer;
+use Exception;
 
 /**
  * @template TValue
@@ -41,14 +41,9 @@ class AnalyzeSingleContextProvider implements SingleContext
     {
         return $this->value;
     }
-
-    protected function newSanitizer(mixed $value): Sanitizer
-    {
-        return new SanitizerImplementation($value);
-    }
 }
 
 
 // Test passing an Exception through
-$test = new AnalyzeSingleContextProvider(new \Exception('test'));
-$test->sanitize();
+$test = new AnalyzeSingleContextProvider(new Exception('test'));
+$test->as('string');

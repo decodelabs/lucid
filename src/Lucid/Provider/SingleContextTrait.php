@@ -12,11 +12,12 @@ namespace DecodeLabs\Lucid\Provider;
 use Closure;
 use DecodeLabs\Lucid\Constraint\NotFoundException as ConstraintNotFoundException;
 use DecodeLabs\Lucid\ProviderTrait;
-use DecodeLabs\Lucid\Sanitizer;
 use DecodeLabs\Lucid\Validate\Result;
 use Exception;
 
 /**
+ * For use in a single value container context
+ *
  * @template TValue
  * @phpstan-require-implements SingleContext<TValue>
  */
@@ -28,14 +29,14 @@ trait SingleContextTrait
         string $type,
         array|Closure|null $setup = null
     ): mixed {
-        return $this->sanitize()->as($type, $setup);
+        return self::castValue($this->getValue(), $type, $setup);
     }
 
     public function validate(
         string $type,
         array|Closure|null $setup = null
     ): Result {
-        return $this->sanitize()->validate($type, $setup);
+        return self::validateValue($this->getValue(), $type, $setup);
     }
 
     public function is(
@@ -43,17 +44,12 @@ trait SingleContextTrait
         array|Closure|null $setup = null
     ): bool {
         try {
-            return $this->validate($type, $setup)->valid;
+            return self::validateValue($this->getValue(), $type, $setup)->valid;
         } catch (ConstraintNotFoundException $e) {
             throw $e;
         } catch (Exception $e) {
             return false;
         }
-    }
-
-    public function sanitize(): Sanitizer
-    {
-        return $this->newSanitizer($this->getValue());
     }
 
     /**

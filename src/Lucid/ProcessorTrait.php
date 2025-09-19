@@ -42,16 +42,6 @@ trait ProcessorTrait
      */
     protected array $constraints = [];
 
-    public function __construct(
-        protected Sanitizer $sanitizer
-    ) {
-    }
-
-    public function getSanitizer(): Sanitizer
-    {
-        return $this->sanitizer;
-    }
-
     public function isMultiValue(): bool
     {
         return false;
