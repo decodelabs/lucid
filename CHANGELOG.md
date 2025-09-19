@@ -5,9 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Unreleased
+--
+
+---
+
+### [v0.8.0](https://github.com/decodelabs/lucid/commits/v0.8.0) - 19th September 2025
+
 - Removed Sanitizer interface
 - Removed ValueContainer structure
 - Simplified Provider processing logic
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.7.0...v0.8.0)
 
 ---
 
