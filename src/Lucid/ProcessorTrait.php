@@ -200,6 +200,15 @@ trait ProcessorTrait
     public function validate(
         mixed $value
     ): Generator {
+        // Check null
+        if ($value === null) {
+            if ($this->isRequired()) {
+                yield from $this->constraints['required']->validate($value);
+            }
+
+            return;
+        }
+
         // Type validation
         yield from $gen = $this->validateType($value);
 
