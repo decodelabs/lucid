@@ -16,7 +16,9 @@ Lucid provides a unified single-value sanitisation and validation structure for 
 
 ## Installation
 
-Install the library via composer:
+This package requires PHP 8.4 or higher.
+
+Install via Composer:
 
 ```bash
 composer require decodelabs/lucid
