@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package Lucid
- * @license http://opensource.org/licenses/MIT
+ * Lucid
+ * @license https://opensource.org/licenses/MIT
  */
 
 declare(strict_types=1);
