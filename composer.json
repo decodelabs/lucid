@@ -23,7 +23,7 @@
         "decodelabs/slingshot": "^0.3.4"
     },
     "require-dev": {
-        "decodelabs/chorus": "^0.1",
+        "decodelabs/chorus": ">0",
         "decodelabs/phpstan-decodelabs": "^0.7"
     },
     "suggest": {
