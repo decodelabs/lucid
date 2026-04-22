@@ -89,6 +89,7 @@ trait ReturnTypeTrait
             if (count($types) === 1) {
                 $output = array_shift($types);
             } else {
+                // @phpstan-ignore-next-line
                 $output = new UnionType($types);
             }
         }

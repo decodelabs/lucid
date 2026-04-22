@@ -48,6 +48,7 @@ class StringNative implements Processor
         }
 
         if (is_array($value)) {
+            // @phpstan-ignore-next-line
             return implode(', ', $value);
         }
 
