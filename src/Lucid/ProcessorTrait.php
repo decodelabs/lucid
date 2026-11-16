@@ -132,6 +132,7 @@ trait ProcessorTrait
 
     /**
      * @param class-string<Constraint<mixed,mixed>> $class
+     * @phpstan-assert class-string<Constraint<mixed,TOutput>> $class
      */
     protected function checkConstraintTypes(
         string $constraint,
