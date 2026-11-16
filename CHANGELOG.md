@@ -5,10 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Unreleased
+--
+
+---
+
+### [v0.8.2](https://github.com/decodelabs/lucid/commits/v0.8.2) - 16th November 2026
+
 - Documented constraint type validation for PHPStan
 - Improved doc comment headers
 - Added AGENTS.md
 - Integrated Chorus dev dependency
+
+[Full list of changes](https://github.com/decodelabs/lucid/compare/v0.8.1...v0.8.2)
 
 ---
 
@@ -277,4 +285,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Built initial Sanitizer structure
 - Added core Processor and Constraint types
-
